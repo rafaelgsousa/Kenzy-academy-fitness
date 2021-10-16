@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 
 /**
- * Exemplo de uso:
+ * Example:
  * 
  * \<Card width={"200px"} height={"200px"} background={"red"} backgroundHover={"black"}\>
  * 
- * valor default: 
+ * Default: 
  * 
  * width = 400px
  * 
@@ -42,11 +42,11 @@ export const Card = styled.div`
 `
 
 /**
- * Exemplo de uso:
+ * Example:
  * 
  * \<TextCard fontSize={"14px"}\>Texto\</TextCard\>
  * 
- * valor default:
+ * Default:
  * 
  * font-size = 12px
  * 
