@@ -27,9 +27,17 @@ export const Card = styled.div`
     justify-content: center;
     margin: ${props => props.margin || "12px"};
     cursor: pointer;
+    position: relative;
 
     &:hover{
         background: ${props => props.backgroundHover || "#ccc"}
+    }
+
+    > button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
     }
 `
 
