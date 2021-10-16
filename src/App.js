@@ -13,7 +13,7 @@ function App() {
         <TextCard>Descrição grupo</TextCard>
         <TextCard>Categoria grupo</TextCard>
       </Card>
-      <Card background={"#ccc"} height={200} width={250} backgroundHover={"coral"}>
+      <Card background={"#ccc"} height={"200px"} width={"250px"} backgroundHover={"coral"}>
         <TextCard>"title": "Calistenia a tarde (15 minutos)"</TextCard>
         <TextCard>"category": "Sáude"</TextCard>
         <TextCard>"difficulty": "Muito díficil"</TextCard>

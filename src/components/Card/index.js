@@ -18,14 +18,14 @@ import styled from 'styled-components'
  */
 export const Card = styled.div`
     background: ${props => props.background || "#fff"};
-    width: ${props => props.width ? `${props.width}px` : "400px"};
-    height: ${props => props.height ? `${props.height}px` : "90px"};
+    width: ${props => props.width || "400px"};
+    height: ${props => props.height || "90px"};
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 12px;
+    margin: ${props => props.margin || "12px"};
     cursor: pointer;
 
     &:hover{
