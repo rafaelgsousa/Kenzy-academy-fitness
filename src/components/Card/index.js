@@ -4,7 +4,7 @@ import styled from 'styled-components'
 /**
  * Exemplo de uso:
  * 
- * \<Card width={200} height={200} background={"red"} backgroundHover={"black"}\>
+ * \<Card width={"200px"} height={"200px"} background={"red"} backgroundHover={"black"}\>
  * 
  * valor default: 
  * 
@@ -36,7 +36,7 @@ export const Card = styled.div`
 /**
  * Exemplo de uso:
  * 
- * \<TextCard fontSize={14}\>Texto\</TextCard\>
+ * \<TextCard fontSize={"14px"}\>Texto\</TextCard\>
  * 
  * valor default:
  * 
@@ -46,6 +46,6 @@ export const Card = styled.div`
  */
 export const TextCard = styled.p`
     margin: 5px;
-    font-size: ${props => props.fontSize ? `${props.fontSize}px` : "12px"};
+    font-size: ${props => props.fontSize || "12px"};
     color: ${props => props.color || "black"};
 `
