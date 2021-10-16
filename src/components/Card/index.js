@@ -17,7 +17,7 @@ import styled from 'styled-components'
  * backgroundHover = #ccc
  */
 export const Card = styled.div`
-    background: ${props => props.background ? `${props.background}` : "fff"};
+    background: ${props => props.background || "#fff"};
     width: ${props => props.width ? `${props.width}px` : "400px"};
     height: ${props => props.height ? `${props.height}px` : "90px"};
     padding: 1rem;
@@ -29,7 +29,7 @@ export const Card = styled.div`
     cursor: pointer;
 
     &:hover{
-        background: ${props => props.backgroundHover ? `${props.backgroundHover}` : "#ccc"}
+        background: ${props => props.backgroundHover || "#ccc"}
     }
 `
 
