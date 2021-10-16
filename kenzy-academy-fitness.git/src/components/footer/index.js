@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export const Header = styled.header`
+export const Footer = styled.footer`
 
     width: ${props => props.width || "100%" };
     height: ${props => props.height || "100px"};
     position: ${props => props.position || "fixed"};
-    top: ${props => props.top || "0px"};
+    bottom: ${props => props.bottom || "0px"};
 
 `
