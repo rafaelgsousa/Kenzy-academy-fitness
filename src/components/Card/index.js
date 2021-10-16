@@ -47,5 +47,5 @@ export const Card = styled.div`
 export const TextCard = styled.p`
     margin: 5px;
     font-size: ${props => props.fontSize ? `${props.fontSize}px` : "12px"};
-    color: ${props => props.color ? `${props.color}` : "black"};
+    color: ${props => props.color || "black"};
 `
