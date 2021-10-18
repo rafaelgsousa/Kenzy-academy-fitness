@@ -7,8 +7,8 @@ import styled from "styled-components";
 //sendo elas width, height e background-color
 
 const UserFooter = styled.div`
-  width: ${(props) => props.width || "100%"};
-  height: ${(props) => props.height || "10%"};
+  width: ${(props) => props.width || "100vw"};
+  height: ${(props) => props.height || "10vh"};
   background-color: ${(props) => props.color || "#007AFF"};
 `;
 
