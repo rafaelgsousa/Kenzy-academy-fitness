@@ -22,6 +22,12 @@ const ModalGroup = () => {
                     <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                         <ButtonX onClick={handleShowActivities}><FiX /></ButtonX>
                         <h3>Atividades</h3>
+                        <Card>
+                            <ButtonX><FiX /></ButtonX>
+                        </Card>
+                        <Card>
+                            <ButtonX><FiX /></ButtonX>
+                        </Card>
                         <Button>Criar Atividades</Button>
                     </Container>
                 }
