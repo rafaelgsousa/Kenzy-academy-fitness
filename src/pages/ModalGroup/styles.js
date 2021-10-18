@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
-export const Content = styled.div`
-    display: flex;
+export const Blur = styled.div`
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    filter: blur(10px);
+    background-image: url("https://picsum.photos/2000");
+`
+
+export const Content = styled.div`
+    height: calc(100vh - 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #fff;
     font-family: 'Roboto';
@@ -25,13 +34,6 @@ export const Content = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        > button:first-child{
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            z-index: 2;
         }
     }
 `

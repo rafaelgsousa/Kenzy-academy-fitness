@@ -1,5 +1,5 @@
 import Container from './../../components/Container'
-import { Content, GroupButton } from './styles'
+import { Blur, Content, GroupButton } from './styles'
 import { Card, TextCard } from './../../components/Card'
 import { Button } from './../../components/Button'
 import { ButtonX } from './../../components/ButtonX'
@@ -7,12 +7,13 @@ import { ButtonX } from './../../components/ButtonX'
 const ModalGroup = () => {
     return (
         <>
+            <Blur />
             <Content>
                 <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                     <h3>Atividades</h3>
                 </Container>
                 <Container width={"670px"} height={"700px"} opacity={"0.7"}>
-                    <ButtonX width={"50px"} height={"50px"} />
+                    <ButtonX width={"50px"} height={"50px"} color={"white"} />
                     <h2>Nome do Grupo</h2>
                     <h3>Categoria</h3>
                     <Card width={"550px"} height={"300px"}>
