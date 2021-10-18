@@ -29,7 +29,7 @@ export const Content = styled.div`
         align-items: center;
         position: relative;
 
-        >div{
+        > div:first-of-type{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,5 +38,9 @@ export const Content = styled.div`
 `
 
 export const GroupButton = styled.div`
-
+    max-width: 550px;
+    width: 100%;
+    margin: 2.5rem 0;
+    display: flex;
+    justify-content: space-around;
 `
