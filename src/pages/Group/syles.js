@@ -14,6 +14,7 @@ export const Box = styled.div`
         padding: 0 32px;
         box-sizing: border-box;
         position: relative;
+        box-shadow: -7px 7px 4px rgba(255, 255, 255, 50%)
     }
 `
 
