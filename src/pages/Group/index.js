@@ -13,6 +13,7 @@ const Group = () => {
                 <Content>
                     <Card>
                         <ButtonX><FiX /></ButtonX>
+
                     </Card>
                     <Button width={"340px"} height={"95px"}>Criar Grupo</Button>
                 </Content>
