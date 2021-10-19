@@ -7,7 +7,6 @@ export const Blur = styled.div`
     height: 100vh;
     width: 100vw;
     filter: blur(10px);
-    background-image: url("https://picsum.photos/2000");
 `
 
 export const Content = styled.div`

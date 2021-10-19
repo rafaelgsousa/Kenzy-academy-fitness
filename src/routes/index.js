@@ -1,5 +1,4 @@
 import { Switch, Route } from "react-router";
-import ModalGroup from "../pages/ModalGroup";
 
 function Routes() {
   return (

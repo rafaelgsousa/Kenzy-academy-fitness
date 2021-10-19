@@ -1,8 +1,8 @@
-import Container from './../../components/Container'
+import Container from '../Container'
 import { Blur, Content, GroupButton } from './styles'
-import { Card, TextCard } from './../../components/Card'
-import { Button } from './../../components/Button'
-import { ButtonX } from './../../components/ButtonX'
+import { Card, TextCard } from '../Card'
+import { Button } from '../Button'
+import { ButtonX } from '../ButtonX'
 import { FiX } from 'react-icons/fi'
 import { useState } from 'react'
 
