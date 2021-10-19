@@ -4,9 +4,7 @@ import ModalGroup from "../pages/ModalGroup";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
-        <ModalGroup />
-      </Route>
+      <Route exact path="/"></Route>
       <Route path="/signUp"></Route>
       <Route path="/login"></Route>
       <Route path="/dashboard"></Route>
