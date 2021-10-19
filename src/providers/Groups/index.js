@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
-import toast from "react-toastify"
+import {toast} from "react-toastify";
 
-export const GroupsContext = createContext([])
+export const GroupsContext = createContext()
 
 export const GroupsProvider = ({children}) => {
 
@@ -32,7 +32,7 @@ export const GroupsProvider = ({children}) => {
         .catch(toast.error("failed creation!"))
     }
 
-    const deleteGroup = (id) => {
+    const deleteGroup = (id,access) => {
         axios.delete(`https://kenzie-habits.herokuapp.com/groups/${id}/unsubscribe/`,
         {
             headers: {
@@ -87,7 +87,7 @@ export const GroupsProvider = ({children}) => {
         }
         )
         .then(resp=>setSubscription(resp))
-        .catch(err=>toast.erro("search failure!"))
+        .catch(err=>toast.error("search failure!"))
 
     }
 
@@ -108,7 +108,7 @@ export const GroupsProvider = ({children}) => {
 
     return (
         <GroupsContext.Provider value={
-        {groupsOfCategory,especificGroup,subscriptions,createGroup,deleteGroup,EditGroup,
+        {access,groupsOfCategory,especificGroup,subscriptions,createGroup,deleteGroup,EditGroup,
             getGroupsForCategory,getEspecificGroup,getSubscription,subscribToAGroup}}>
             {children}
         </GroupsContext.Provider>
