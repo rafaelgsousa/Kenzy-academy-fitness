@@ -8,6 +8,7 @@ export const Box = styled.div`
     justify-content: space-around;
     align-items: center;
     color: white;
+    font-family: 'Roboto';
 
     > div {
         padding: 0 32px;
@@ -27,4 +28,12 @@ export const Content = styled.div`
         bottom: 32px;
         cursor: pointer;
     }
+`
+
+export const Input = styled.input`
+    width: 590px;
+    height: 35px;
+    display: block;
+    margin: 0 auto 90px;
+    text-align: center;
 `
