@@ -17,18 +17,20 @@ const Group = () => {
             </Container>
             <Container width={"1140px"} height={"760px"} opacity={"0.7"}>
                 <h2>Procurar Grupos</h2>
-                <Card>
-                    <ButtonX><FiX /></ButtonX>
-                </Card>
-                <Card>
-                    <ButtonX><FiX /></ButtonX>
-                </Card>
-                <Card>
-                    <ButtonX><FiX /></ButtonX>
-                </Card>
-                <Card>
-                    <ButtonX><FiX /></ButtonX>
-                </Card>
+                <Content>
+                    <Card>
+                        <ButtonX><FiX /></ButtonX>
+                    </Card>
+                    <Card>
+                        <ButtonX><FiX /></ButtonX>
+                    </Card>
+                    <Card>
+                        <ButtonX><FiX /></ButtonX>
+                    </Card>
+                    <Card>
+                        <ButtonX><FiX /></ButtonX>
+                    </Card>
+                </Content>
             </Container>
         </Box>
     )
