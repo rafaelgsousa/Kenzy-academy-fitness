@@ -12,6 +12,7 @@ export const Box = styled.div`
     > div {
         padding: 0 32px;
         box-sizing: border-box;
+        position: relative;
     }
 `
 
@@ -19,4 +20,11 @@ export const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    > button {
+        font-size: 36px;
+        position: absolute;
+        bottom: 32px;
+        cursor: pointer;
+    }
 `
