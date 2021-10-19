@@ -47,4 +47,5 @@ export const Blur = styled.span`
     left: 0;
     height: 100%;
     width: 100%;
+    filter: blur(3px);
 `
