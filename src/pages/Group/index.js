@@ -1,4 +1,4 @@
-import { Box, Content, Input } from "./syles"
+import { Blur, Box, Content, Input } from "./syles"
 import Container from './../../components/Container'
 import { Card, TextCard } from './../../components/Card'
 import { ButtonX } from './../../components/ButtonX'
@@ -8,6 +8,7 @@ import { FiX } from 'react-icons/fi'
 const Group = () => {
     return (
         <Box>
+            <Blur />
             <Container width={"600px"} height={"760px"} opacity={"0.7"}>
                 <h2>Meu Grupos</h2>
                 <Content>

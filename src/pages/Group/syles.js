@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import img from './../../assets/img/group.jpeg'
 
 export const Box = styled.div`
-    height: 100vh;
-    width: 100vw;
-    background: lightgray;
+    height: calc(100vh - 16px);
+    width: calc(100vw - 16px);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -36,4 +36,15 @@ export const Input = styled.input`
     display: block;
     margin: 0 auto 90px;
     text-align: center;
+`
+
+export const Blur = styled.span`
+    background-image: url(${img});
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 `
