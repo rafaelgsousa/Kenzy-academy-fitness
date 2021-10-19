@@ -22,9 +22,9 @@ const Container = styled.div`
   height: ${(props) => props.height || "200px"};
   opacity: ${(props) => props.opacity || "1.0"};
   background-color: #007aff;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
 `;
 
 export default Container;
