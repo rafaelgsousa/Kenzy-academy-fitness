@@ -25,7 +25,7 @@ export const Content = styled.div`
     > button {
         font-size: 36px;
         position: absolute;
-        bottom: 32px;
+        bottom: 95px;
         cursor: pointer;
     }
 `
