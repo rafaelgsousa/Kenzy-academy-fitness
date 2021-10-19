@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Providers } from "./providers/index";
-import { Toaster } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Providers>
-        <Toaster
+        <ToastContainer
           position="top-right"
           autoClose={5000}
           hideProgressBar={false}
