@@ -45,15 +45,27 @@ const Group = () => {
                 <Content>
                     <Card>
                         <ButtonX><FiX /></ButtonX>
+                        <TextCard>Grupo novo 1</TextCard>
+                        <TextCard>Descrição bolada</TextCard>
+                        <TextCard>Saúde</TextCard>
                     </Card>
                     <Card>
                         <ButtonX><FiX /></ButtonX>
+                        <TextCard>Grupo novo 2</TextCard>
+                        <TextCard>Descrição bolada</TextCard>
+                        <TextCard>Saúde</TextCard>
                     </Card>
                     <Card>
                         <ButtonX><FiX /></ButtonX>
+                        <TextCard>Grupo novo 3</TextCard>
+                        <TextCard>Descrição bolada</TextCard>
+                        <TextCard>Saúde</TextCard>
                     </Card>
                     <Card>
                         <ButtonX><FiX /></ButtonX>
+                        <TextCard>Grupo novo 4</TextCard>
+                        <TextCard>Descrição bolada</TextCard>
+                        <TextCard>Saúde</TextCard>
                     </Card>
                 </Content>
             </Container>
