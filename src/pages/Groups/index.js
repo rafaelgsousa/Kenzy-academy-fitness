@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import Container from "../../components/Container";
-import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button";
 import { Card, TextCard } from "../../components/Card";
 import { GroupsContext } from "../../providers/Groups";
-import { Blur, Box, Content } from "./style"
+import { Blur, Box, Content, Input } from "./style"
 import { ButtonX } from "../../components/ButtonX";
 import { FiX } from "react-icons/fi";
 
@@ -38,8 +37,8 @@ export const Groups = () => {
                             <Card key={index}>
                                 <ButtonX onClick={() => deleteGroup(group.id, access)}><FiX /></ButtonX>
                                 <TextCard>{group.name}</TextCard>
-                                <TextCard>Descrição bolada</TextCard>
-                                <TextCard>Saúde</TextCard>
+                                <TextCard>{group.description}</TextCard>
+                                <TextCard>{group.category}</TextCard>
                             </Card>
                         )
                     }
