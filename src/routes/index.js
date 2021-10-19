@@ -1,5 +1,4 @@
 import { Switch, Route } from "react-router";
-import {Groups} from "../pages/Groups/index";
 
 function Routes() {
   return (
@@ -8,7 +7,7 @@ function Routes() {
       <Route path="/login"></Route>
       <Route path="/dashboard"></Route>
       <Route path="/habits"></Route>
-      <Route exact path="/"><Groups/></Route>
+      <Route exact path="/"></Route>
     </Switch>
   )
 }
