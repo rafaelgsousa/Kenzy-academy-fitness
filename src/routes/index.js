@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Cadastro from "../pages/Cadastro";
 import Login from "../pages/Login";
 import HomePage from "../pages/HomePage";
+import { Groups } from "../pages/Groups";
 
 function Routes() {
   return (
@@ -23,7 +24,9 @@ function Routes() {
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      <Route path="/groups"></Route>
+      <Route path="/groups">
+        <Groups/>
+      </Route>
     </Switch>
   );
 }
