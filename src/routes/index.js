@@ -25,7 +25,7 @@ function Routes() {
         <Dashboard />
       </Route>
       <Route path="/groups">
-        <Groups/>
+        <Groups />
       </Route>
     </Switch>
   );
