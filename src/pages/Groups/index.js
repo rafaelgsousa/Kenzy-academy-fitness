@@ -5,7 +5,7 @@ import { Card, TextCard } from "../../components/Card";
 import { GroupsContext } from "../../providers/Groups";
 import { Blur, Box, Content, Input } from "./style"
 import { ButtonX } from "../../components/ButtonX";
-import { FiX } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 import ModalGroup from '../../components/ModalGroup'
 
 export const Groups = () => {
@@ -51,6 +51,7 @@ export const Groups = () => {
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"} onClick={toShowModalGroup}>
                                 <TextCard>{groups.name}</TextCard>
+                                <ButtonX><FiPlus /></ButtonX>
                             </Card>
                         )}
                     </Content>
