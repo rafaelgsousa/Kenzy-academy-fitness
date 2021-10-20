@@ -4,7 +4,7 @@ import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button";
 import { Card, TextCard } from "../../components/Card";
 import { GroupsContext } from "../../providers/Groups";
-import { Box, Content, Form } from "./style"
+import { Blur, Box, Content, Form } from "./style"
 import { ButtonX } from "../../components/ButtonX";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
@@ -37,6 +37,7 @@ export const GroupsComponent = () => {
     return (
         <>
             <Box>
+                <Blur />
                 {showCreateGroup ?
                     <Container width={"600px"} height={"760px"}>
                         <h2>Criar Grupo</h2>

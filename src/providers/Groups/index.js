@@ -115,7 +115,7 @@ export const GroupsProvider = ({ children }) => {
     return (
         <GroupsContext.Provider value={
             {
-                access, groupsOfCategory, especificGroup, subscriptions, createGroup, deleteGroup, EditGroup,
+                access, groupsOfCategory, especificGroup, subscriptions, createGroup, deleteGroup, updateGroup,
                 getGroupsForCategory, getEspecificGroup, getSubscription, subscribToAGroup, toShowModalGroup, showModal
             }}>
             {children}

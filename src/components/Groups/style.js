@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// import img from './../../assets/img/group.jpeg'
+import img from './../../assets/img/group.jpeg'
 
 export const Box = styled.div`
     height: calc(100vh - 16px);
@@ -56,7 +56,7 @@ export const Input = styled.input`
 `
 
 export const Blur = styled.span`
-
+    background-image: url(${img});
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;

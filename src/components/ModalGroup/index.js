@@ -49,9 +49,9 @@ const ModalGroup = () => {
                         <h3>Atividades</h3>
                         <Card>
                             <ul>
-                                {!!especificGroup.data.activites && especificGroup.data.activites
+                                {(especificGroup.data !== undefined) && especificGroup.data.activites
                                     .map((activite, index) => <li>
-                                        <ButtonX>X</ButtonX>
+                                        <ButtonX><FiX /></ButtonX>
                                         <p>{activite}</p>
                                     </li>)}
                             </ul>
@@ -66,7 +66,7 @@ const ModalGroup = () => {
                     <h2>{(especificGroup.data !== undefined) && especificGroup.data.name}</h2>
                     <h3>{(especificGroup.data !== undefined) && especificGroup.data.category}</h3>
                     <Card width={"550px"} height={"300px"}>
-                        <TextCard>{!!especificGroup.data.description && especificGroup.data.description}</TextCard>
+                        <TextCard>{(especificGroup.data !== undefined) && especificGroup.data.description}</TextCard>
                     </Card>
                     <GroupButton>
                         <Button width={"250px"} height={"50px"} onClick={handleShowActivities}>Atividades</Button>
@@ -81,9 +81,9 @@ const ModalGroup = () => {
                         <h3>Objetivos</h3>
                         <Card>
                             <ul>
-                                {!!especificGroup.data.goals && especificGroup.data.goals
+                                {(especificGroup.data !== undefined) && especificGroup.data.goals
                                     .map((activite, index) => <li>
-                                        <ButtonX>X</ButtonX>
+                                        <ButtonX><FiX /></ButtonX>
                                         <p>{activite}</p>
                                     </li>)}
                             </ul>
