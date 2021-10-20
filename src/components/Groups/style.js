@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    div {
-        display: flex;
-        flex-direction: column;
-        margin: 20px;
-        align-items: center;
-    }
-`;
-
 // import img from './../../assets/img/group.jpeg'
 
 export const Box = styled.div`
@@ -28,6 +16,11 @@ export const Box = styled.div`
         position: relative;
         box-shadow: -7px 7px 4px rgba(255, 255, 255, 50%)
     }
+
+    input {
+        display: block;
+        margin: 20px auto;
+    }
 `
 
 export const Content = styled.div`
@@ -35,6 +28,18 @@ export const Content = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     > button {
+        font-size: 36px;
+        position: absolute;
+        bottom: 95px;
+        cursor: pointer;
+    }
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    button {
         font-size: 36px;
         position: absolute;
         bottom: 95px;

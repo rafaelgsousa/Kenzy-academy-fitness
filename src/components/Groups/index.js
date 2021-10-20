@@ -4,7 +4,7 @@ import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button";
 import { Card, TextCard } from "../../components/Card";
 import { GroupsContext } from "../../providers/Groups";
-import { Box, Content } from "./style"
+import { Box, Content, Form } from "./style"
 import { ButtonX } from "../../components/ButtonX";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ export const GroupsComponent = () => {
     const [category, setCategory] = useState("")
 
     const { access, subscriptions, groupsOfCategory, getSubscription,
-        getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
+        getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup, toShowModalGroup, showModal } = useContext(GroupsContext)
 
     useEffect(() =>
         getSubscription()
@@ -40,21 +40,21 @@ export const GroupsComponent = () => {
                 {showCreateGroup ?
                     <Container width={"600px"} height={"760px"}>
                         <h2>Criar Grupo</h2>
-                        <form onSubmit={handleSubmit(onCreateCategory)}>
-                            <ButtonX onClick={() => setShowCreateGroup(false)}><FiX /></ButtonX>
-                            <Input placeholder="Nome do grupo" {...register("name")} />
-                            <Input placeholder="Descrição" {...register("description")} />
-                            <Input placeholder="Categoria" {...register("category")} />
-                            <Button type="submit">Create group</Button>
-                        </form>
+                        <Form onSubmit={handleSubmit(onCreateCategory)}>
+                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => setShowCreateGroup(false)}><FiX /></ButtonX>
+                            <Input placeholder="Nome do grupo" {...register("name")} width={"400px"} height={"50px"} />
+                            <Input placeholder="Descrição" {...register("description")} width={"400px"} height={"50px"} />
+                            <Input placeholder="Categoria" {...register("category")} width={"400px"} height={"50px"} />
+                            <Button width={"340px"} height={"95px"} type="submit">Criar Grupo</Button>
+                        </Form>
                     </Container>
                     :
                     <Container width={"600px"} height={"760px"}>
                         <h2>Meu Grupos</h2>
                         <Content>
                             {
-                                !!subscriptions.data && subscriptions.data.map((group, index) =>
-                                    <Card key={index} /*onClick={toShowModalGroup}*/>
+                                (subscriptions.data !== undefined) && subscriptions.data.map((group, index) =>
+                                    <Card key={index} onClick={toShowModalGroup}>
                                         <ButtonX onClick={() => deleteGroup(group.id, access)}><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
                                         <TextCard>{group.description}</TextCard>
@@ -68,10 +68,10 @@ export const GroupsComponent = () => {
                 }
                 <Container width={"1140px"} height={"760px"} >
                     <h2>Procurar Grupos</h2>
-                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} width={"590px"} height={"35px"} />
                     <Content>
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
-                            <Card key={index} height={"50px"} /*onClick={toShowModalGroup}*/>
+                            <Card key={index} height={"50px"} onClick={toShowModalGroup}>
                                 <TextCard>{groups.name}</TextCard>
                                 <ButtonX><FiPlus /></ButtonX>
                             </Card>
@@ -79,9 +79,9 @@ export const GroupsComponent = () => {
                     </Content>
                 </Container>
             </Box>
-            {/* {
+            {
                 !!showModal && <ModalGroup />
-            } */}
+            }
         </>
     )
 }
