@@ -49,7 +49,7 @@ export const Groups = () => {
                     <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} />
                     <Content>
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
-                            <Card key={index} height={"50px"}>
+                            <Card key={index} height={"50px"} onClick={toShowModalGroup}>
                                 <ButtonX><FiX /></ButtonX>
                                 <TextCard>{groups.name}</TextCard>
                             </Card>
