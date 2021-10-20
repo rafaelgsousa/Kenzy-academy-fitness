@@ -1,74 +1,87 @@
-import { useContext, useEffect,useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "../../components/Container";
-import {Input} from "../../components/Input/index";
+import { Input } from "../../components/Input/index";
 import { Button } from "../../components/Button";
-import { Card } from "../../components/Card";
-import { GroupsContext} from "../../providers/Groups";
-import {Main} from "./style"
+import { Card, TextCard } from "../../components/Card";
+import { GroupsContext } from "../../providers/Groups";
+import { Box, Content } from "./style"
 import { ButtonX } from "../../components/ButtonX";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
+import ModalGroup from '../../components/ModalGroup'
+import { FiPlus, FiX } from "react-icons/fi"
 
 export const GroupsComponent = () => {
 
-    const {register,handleSubmit}= useForm()
+    const { register, handleSubmit } = useForm()
 
-    const [showCreateGroup,setShowCreateGroup] = useState(false)
+    const [showCreateGroup, setShowCreateGroup] = useState(false)
 
     const history = useHistory()
 
-    const [category,setCategory] = useState("")
+    const [category, setCategory] = useState("")
 
-    const {access,subscriptions,groupsOfCategory,getSubscription,
-        getGroupsForCategory,deleteGroup,createGroup,subscribToAGroup} = useContext(GroupsContext)
+    const { access, subscriptions, groupsOfCategory, getSubscription,
+        getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    useEffect(()=>
+    useEffect(() =>
         getSubscription()
-    ,[])
+        , [])
 
-    useEffect(()=> 
-    getGroupsForCategory(category)
-    ,[category])
+    useEffect(() =>
+        getGroupsForCategory(category)
+        , [category])
 
     const onCreateCategory = (data) => createGroup(data)
-    
+
     return (
         <>
-            <Main>
-                { showCreateGroup ?
-                <form style={{height:"400px",width:"300px",opacity:"0.7",backgroundColor:"#007aff"}} onSubmit={handleSubmit(onCreateCategory)}>
-                    <p style={{width:"100%",textAlign:"right",cursor:"pointer"}} onClick={()=>setShowCreateGroup(false)}>X</p>
-                    <Card height="30px" width="80%">Group</Card>
-                        <Input placeholder="Nome do grupo" {...register("name")}/>
-                        <Input placeholder="Descrição" {...register("description")}/>
-                        <Input placeholder="Categoria" {...register("category")}/>
-                    <Button type="submit">Create group</Button>
-                </form>
-                :
-                <Container height="400px" width="300px" opacity="0.7">
-                    <Card height="30px" width="80%">Create</Card>
-                    {(subscriptions.data !== undefined) && subscriptions.data.map((group,index)=>
-                            <Card key={index} width="150px" height="40px" onClick={()=>history.push(`/modalgroups/${group.id}`)}>
-                                <p>{group.name}<ButtonX onClick={()=>deleteGroup(group.id,access)}>X</ButtonX></p>
-                            </Card>
-                        )}
-                    <Button onClick={()=>setShowCreateGroup(true)}>Create group</Button>
-                </Container>
+            <Box>
+                {showCreateGroup ?
+                    <Container width={"600px"} height={"760px"}>
+                        <h2>Criar Grupo</h2>
+                        <form onSubmit={handleSubmit(onCreateCategory)}>
+                            <ButtonX onClick={() => setShowCreateGroup(false)}><FiX /></ButtonX>
+                            <Input placeholder="Nome do grupo" {...register("name")} />
+                            <Input placeholder="Descrição" {...register("description")} />
+                            <Input placeholder="Categoria" {...register("category")} />
+                            <Button type="submit">Create group</Button>
+                        </form>
+                    </Container>
+                    :
+                    <Container width={"600px"} height={"760px"}>
+                        <h2>Meu Grupos</h2>
+                        <Content>
+                            {
+                                !!subscriptions.data && subscriptions.data.map((group, index) =>
+                                    <Card key={index} /*onClick={toShowModalGroup}*/>
+                                        <ButtonX onClick={() => deleteGroup(group.id, access)}><FiX /></ButtonX>
+                                        <TextCard>{group.name}</TextCard>
+                                        <TextCard>{group.description}</TextCard>
+                                        <TextCard>{group.category}</TextCard>
+                                    </Card>
+                                )
+                            }
+                            <Button width={"340px"} height={"95px"} onClick={() => setShowCreateGroup(true)}>Criar Grupo</Button>
+                        </Content>
+                    </Container>
                 }
-                <Container height="400px" width="600px" opacity="0.7">
-                    <Card height="30px" width="80%" >Procurar Grupos</Card>
-                    <Input placeholder="search by category" value={category} onChange={(e)=>setCategory(e.target.value)} width="80%"/>
-                    <ul style={{display:"flex",flexWrap:"wrap",
-                    justifyContent:"space-around",alignItems:"center",padding:"5px 30px"}}>
-                        {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((group,index)=>
-                            <Card key={index} width="150px" height="50px" style={{display:"flex"}}>                                
-                                <p onClick={()=>subscribToAGroup(group.id)}>{group.name}</p>
+                <Container width={"1140px"} height={"760px"} >
+                    <h2>Procurar Grupos</h2>
+                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <Content>
+                        {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
+                            <Card key={index} height={"50px"} /*onClick={toShowModalGroup}*/>
+                                <TextCard>{groups.name}</TextCard>
+                                <ButtonX><FiPlus /></ButtonX>
                             </Card>
                         )}
-                    </ul>
+                    </Content>
                 </Container>
-            </Main>
-            <Card width="100%">Copyright 2021 Todos os diretos reservados.</Card>
+            </Box>
+            {/* {
+                !!showModal && <ModalGroup />
+            } */}
         </>
     )
 }
