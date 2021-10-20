@@ -50,7 +50,6 @@ export const Groups = () => {
                     <Content>
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"} onClick={toShowModalGroup}>
-                                <ButtonX><FiX /></ButtonX>
                                 <TextCard>{groups.name}</TextCard>
                             </Card>
                         )}
