@@ -5,7 +5,6 @@ import Cadastro from "../pages/Cadastro";
 import Login from "../pages/Login";
 import HomePage from "../pages/HomePage";
 import { Groups } from "../pages/Groups";
-import ModalCreatEditActivities from "../components/ModalCreatEditActivities";
 
 function Routes() {
   return (
@@ -27,9 +26,6 @@ function Routes() {
       </Route>
       <Route path="/groups">
         <Groups />
-      </Route>
-      <Route path="/modal">
-        <ModalCreatEditActivities />
       </Route>
     </Switch>
   );
