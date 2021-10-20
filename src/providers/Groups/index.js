@@ -27,10 +27,9 @@ export const GroupsProvider = ({ children }) => {
                 },
             }
         )
-            .then((_) => {
+            .then((_) =>
                 toast.success("created group!")
-                history.push("/dashboard")
-            })
+            )
             .catch(toast.error("failed creation!"))
     }
 
@@ -42,14 +41,13 @@ export const GroupsProvider = ({ children }) => {
                 },
             }
         )
-            .then((_) => {
+            .then((_) =>
                 toast.success("deleted group!")
-                history.push("/dashboard")
-            })
+            )
             .catch(toast.error("failed to delete!"))
     }
 
-    const EditGroup = ({ name, description, category }, idGroup) => {
+    const updateGroup = ({ name, description, category }, idGroup) => {
 
         axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`,
             { name, description, category },
@@ -61,7 +59,7 @@ export const GroupsProvider = ({ children }) => {
         )
             .then((_) => {
                 toast.success("Editing completed!")
-                history.push("/dashboard")
+                history.push("/groups")
             })
             .catch(toast.error("failed in editing!"))
     }
@@ -69,7 +67,7 @@ export const GroupsProvider = ({ children }) => {
     const getGroupsForCategory = (category) => {
         axios.get(`https://kenzie-habits.herokuapp.com/groups/?category=${category}`)
             .then(resp => {
-                setGroupsOfCategory(resp)
+                return setGroupsOfCategory(resp)
             })
             .catch((err) => toast.error("search failure!"))
     }
@@ -88,7 +86,9 @@ export const GroupsProvider = ({ children }) => {
                 },
             }
         )
-            .then(resp => setSubscription(resp))
+            .then(resp => {
+                return setSubscription(resp)
+            })
             .catch(err => toast.error("search failure!"))
 
     }
@@ -103,7 +103,7 @@ export const GroupsProvider = ({ children }) => {
         )
             .then((_) => {
                 toast.success("Successfully enrolled")
-                history.push("/dashboard")
+                history.push("/groups")
             })
             .catch(err => toast.error("registration error!"))
     }

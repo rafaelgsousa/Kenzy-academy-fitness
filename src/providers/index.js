@@ -1,9 +1,15 @@
 import { GroupsProvider } from "./Groups/index";
+import { ActivitesProvider } from "./Activites";
+import { GoalsProvider } from "./Goals";
 
 export const Providers = ({children}) => {
     return (
         <GroupsProvider>
-            {children}
+            <ActivitesProvider>
+                <GoalsProvider>
+                    {children}
+                </GoalsProvider>
+            </ActivitesProvider>
         </GroupsProvider>
     )
 }

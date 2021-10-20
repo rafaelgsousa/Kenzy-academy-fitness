@@ -5,6 +5,7 @@ import Cadastro from "../pages/Cadastro";
 import Login from "../pages/Login";
 import HomePage from "../pages/HomePage";
 import { Groups } from "../pages/Groups";
+import {ModalGroups} from "../pages/modalGroups"
 
 function Routes() {
   return (
@@ -26,6 +27,9 @@ function Routes() {
       </Route>
       <Route path="/groups">
         <Groups />
+      </Route>
+      <Route path="/modalgroups/:id">
+        <ModalGroups/>
       </Route>
     </Switch>
   );
