@@ -6,8 +6,9 @@ export const Blur = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  filter: blur(10px);
-  background-image: url("https://picsum.photos/2000");
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(9.5px);
 `;
 
 export const UserEditModal = styled.div`
@@ -26,6 +27,7 @@ export const UserEditModal = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
   }
 `;
