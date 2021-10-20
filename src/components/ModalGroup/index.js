@@ -25,16 +25,21 @@ const ModalGroup = () => {
 
     const { especificGroup, getEspecificGroup, updateGroup } = useContext(GroupsContext)
 
+    console.log(activitesOfGroup)
+
     useEffect(() =>
         getEspecificGroup(idgroup)
+        // eslint-disable-next-line
         , [])
 
     useEffect(() =>
         getGroupActivities(idgroup)
+        // eslint-disable-next-line
         , [])
 
     useEffect(() =>
         getGroupGoals(idgroup)
+        // eslint-disable-next-line
         , [])
 
     const [showActivities, setShowActivities] = useState(false)
@@ -51,16 +56,15 @@ const ModalGroup = () => {
                     <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={handleShowActivities}><FiX /></ButtonX>
                         <h3>Atividades</h3>
-                        <Card>
-                            <ul>
-                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
-                                    .map((activite, index) => <li>
-                                        <ButtonX><FiX /></ButtonX>
-                                        <p>{activite}</p>
-                                    </li>)}
-                            </ul>
-                        </Card>
 
+                        {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
+                            .map((activite) =>
+                                <Card key={activite.id}>
+                                    <ButtonX><FiX /></ButtonX>
+                                    <TextCard>{activite.title}</TextCard>
+                                    <TextCard>{activite.realization_time}</TextCard>
+                                </Card>
+                            )}
                         <Button>Criar Atividades</Button>
                     </Container>
                 }
@@ -83,17 +87,15 @@ const ModalGroup = () => {
                     <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={handleShowObjects}><FiX /></ButtonX>
                         <h3>Objetivos</h3>
-                        <Card>
-                            <ul>
-                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
-                                    .map((activite, index) => <li key={index}>
-                                        <Card style={{ color: "black" }}>
-                                            <ButtonX>X</ButtonX>
-                                            <TextCard>{activite.title}</TextCard>
-                                        </Card>
-                                    </li>)}
-                            </ul>
-                        </Card>
+                        {(goalsGroup.data !== undefined) && goalsGroup.data.results
+                            .map((goal, index) =>
+                                <Card key={index}>
+                                    <ButtonX><FiX /></ButtonX>
+                                    <TextCard>{goal.title}</TextCard>
+                                    <TextCard>{goal.difficulty}</TextCard>
+                                    <TextCard>{goal.how_much_achieved}</TextCard>
+                                </Card>
+                            )}
                         <Button>Criar Objetivos</Button>
                     </Container>
                 }

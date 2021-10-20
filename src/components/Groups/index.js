@@ -8,8 +8,7 @@ import { Blur, Box, Content, Form } from "./style"
 import { ButtonX } from "../../components/ButtonX";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
-import ModalGroup from '../../components/ModalGroup'
-import { FiPlus, FiX } from "react-icons/fi"
+import { FiPlus, FiX } from "react-icons/fi";
 
 export const GroupsComponent = () => {
 
@@ -22,14 +21,16 @@ export const GroupsComponent = () => {
     const [category, setCategory] = useState("")
 
     const { access, subscriptions, groupsOfCategory, getSubscription,
-        getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup, toShowModalGroup, showModal } = useContext(GroupsContext)
+        getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
     useEffect(() =>
         getSubscription()
+        // eslint-disable-next-line
         , [])
 
     useEffect(() =>
         getGroupsForCategory(category)
+        // eslint-disable-next-line
         , [category])
 
     const onCreateCategory = (data) => createGroup(data)
@@ -80,9 +81,6 @@ export const GroupsComponent = () => {
                     </Content>
                 </Container>
             </Box>
-            {
-                !!showModal && <ModalGroup />
-            }
         </>
     )
 }
