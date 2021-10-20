@@ -43,7 +43,7 @@ export const GroupsComponent = () => {
                     <Container width={"600px"} height={"760px"}>
                         <h2>Criar Grupo</h2>
                         <Form onSubmit={handleSubmit(onCreateCategory)}>
-                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => setShowCreateGroup(false)}><FiX /></ButtonX>
+                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => setShowCreateGroup(false)} ><FiX /></ButtonX>
                             <Input placeholder="Nome do grupo" {...register("name")} width={"400px"} height={"50px"} />
                             <Input placeholder="Descrição" {...register("description")} width={"400px"} height={"50px"} />
                             <Input placeholder="Categoria" {...register("category")} width={"400px"} height={"50px"} />
@@ -56,8 +56,19 @@ export const GroupsComponent = () => {
                         <Content>
                             {
                                 (subscriptions.data !== undefined) && subscriptions.data.map((group, index) =>
-                                    <Card key={index} onClick={() => history.push(`/modalgroups/${group.id}`)}>
-                                        <ButtonX onClick={() => deleteGroup(group.id, access)}><FiX /></ButtonX>
+                                    <Card
+                                        key={index}
+                                        onClick={
+                                            () => { history.push(`/modalgroups/${group.id}`) }
+                                        }>
+
+                                        <ButtonX
+                                            onClick={
+                                                (e) => {
+                                                    e.stopPropagation()
+                                                    deleteGroup(group.id, access)
+                                                }
+                                            }><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
                                         <TextCard>{group.description}</TextCard>
                                         <TextCard>{group.category}</TextCard>
@@ -75,7 +86,12 @@ export const GroupsComponent = () => {
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"} onClick={() => history.push(`/modalgroups/${groups.id}`)}>
                                 <TextCard>{groups.name}</TextCard>
-                                <ButtonX><FiPlus /></ButtonX>
+                                <ButtonX
+                                    onClick={
+                                        (e) => {
+                                            e.stopPropagation()
+                                        }
+                                    }><FiPlus /></ButtonX>
                             </Card>
                         )}
                     </Content>
