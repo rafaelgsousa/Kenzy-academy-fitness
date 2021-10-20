@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from 'react'
 import { GroupsContext } from '../../providers/Groups'
 import { ActivitesContext } from "../../providers/Activites";
 import { GoalsContext } from "../../providers/Goals";
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 
 const ModalGroup = () => {
@@ -17,24 +17,28 @@ const ModalGroup = () => {
 
     const [idgroup] = useState(params.id);
 
+    const history = useHistory()
+
     const { activitesOfGroup, getGroupActivities } = useContext(ActivitesContext)
 
     const { goalsGroup, getGroupGoals } = useContext(GoalsContext)
 
     const { especificGroup, getEspecificGroup, updateGroup } = useContext(GroupsContext)
 
-    useEffect(() => console.log("Effect funcionando"), [])
-
     useEffect(() =>
         getEspecificGroup(idgroup)
         , [])
 
+    useEffect(() =>
+        getGroupActivities(idgroup)
+        , [])
 
+    useEffect(() =>
+        getGroupGoals(idgroup)
+        , [])
 
     const [showActivities, setShowActivities] = useState(false)
     const [showObjects, setShowObjects] = useState(false)
-
-    const { toShowModalGroup } = useContext(GroupsContext)
 
     const handleShowActivities = () => setShowActivities(!showActivities)
     const handleShowObjects = () => setShowObjects(!showObjects)
@@ -49,7 +53,7 @@ const ModalGroup = () => {
                         <h3>Atividades</h3>
                         <Card>
                             <ul>
-                                {(especificGroup.data !== undefined) && especificGroup.data.activites
+                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
                                     .map((activite, index) => <li>
                                         <ButtonX><FiX /></ButtonX>
                                         <p>{activite}</p>
@@ -62,7 +66,7 @@ const ModalGroup = () => {
                 }
 
                 <Container width={"670px"} height={"700px"}>
-                    <ButtonX onClick={toShowModalGroup}><FiX /></ButtonX>
+                    <ButtonX onClick={() => history.push('/groups')}><FiX /></ButtonX>
                     <h2>{(especificGroup.data !== undefined) && especificGroup.data.name}</h2>
                     <h3>{(especificGroup.data !== undefined) && especificGroup.data.category}</h3>
                     <Card width={"550px"} height={"300px"}>
@@ -81,10 +85,12 @@ const ModalGroup = () => {
                         <h3>Objetivos</h3>
                         <Card>
                             <ul>
-                                {(especificGroup.data !== undefined) && especificGroup.data.goals
-                                    .map((activite, index) => <li>
-                                        <ButtonX><FiX /></ButtonX>
-                                        <p>{activite}</p>
+                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
+                                    .map((activite, index) => <li key={index}>
+                                        <Card style={{ color: "black" }}>
+                                            <ButtonX>X</ButtonX>
+                                            <TextCard>{activite.title}</TextCard>
+                                        </Card>
                                     </li>)}
                             </ul>
                         </Card>

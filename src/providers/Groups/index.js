@@ -13,8 +13,6 @@ export const GroupsProvider = ({ children }) => {
 
     const [subscriptions, setSubscription] = useState([])
 
-    const [showModal, setShowModal] = useState(false)
-
     const history = useHistory()
 
     const access = localStorage.getItem("@KAF_userToken") || ""
@@ -108,15 +106,11 @@ export const GroupsProvider = ({ children }) => {
             .catch(err => toast.error("registration error!"))
     }
 
-    const toShowModalGroup = () => {
-        setShowModal(!showModal)
-    }
-
     return (
         <GroupsContext.Provider value={
             {
                 access, groupsOfCategory, especificGroup, subscriptions, createGroup, deleteGroup, updateGroup,
-                getGroupsForCategory, getEspecificGroup, getSubscription, subscribToAGroup, toShowModalGroup, showModal
+                getGroupsForCategory, getEspecificGroup, getSubscription, subscribToAGroup
             }}>
             {children}
         </GroupsContext.Provider>

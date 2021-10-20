@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
+import img from './../../assets/img/group.jpeg'
+
 export const Blur = styled.div`
     position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    background: rgba(255, 255, 255, 0.9);
+    background-image: url(${img});
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
 `
 
 export const Content = styled.div`
