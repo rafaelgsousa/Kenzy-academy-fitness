@@ -20,25 +20,21 @@ export const GroupsComponent = () => {
     const [category,setCategory] = useState("")
 
     const {access,subscriptions,groupsOfCategory,getSubscription,
-        getGroupsForCategory,deleteGroup,createGroup} = useContext(GroupsContext)
+        getGroupsForCategory,deleteGroup,createGroup,subscribToAGroup} = useContext(GroupsContext)
 
-    useEffect(()=>{
-        console.log("Effect 1 funcionou")
-        return getSubscription()
-    },[])
+    useEffect(()=>
+        getSubscription()
+    ,[])
 
-    useEffect(()=>{
-        console.log("effect 2 funcionu")
-        return getGroupsForCategory(category)
-    },[category])
+    useEffect(()=> 
+    getGroupsForCategory(category)
+    ,[category])
 
     const onCreateCategory = (data) => createGroup(data)
     
     return (
         <>
             <Main>
-            {console.log("inscriçoes:",subscriptions)}
-            {console.log("categoria:",groupsOfCategory)}
                 { showCreateGroup ?
                 <form style={{height:"400px",width:"300px",opacity:"0.7",backgroundColor:"#007aff"}} onSubmit={handleSubmit(onCreateCategory)}>
                     <p style={{width:"100%",textAlign:"right",cursor:"pointer"}} onClick={()=>setShowCreateGroup(false)}>X</p>
@@ -51,8 +47,8 @@ export const GroupsComponent = () => {
                 :
                 <Container height="400px" width="300px" opacity="0.7">
                     <Card height="30px" width="80%">Create</Card>
-                    {!!subscriptions && subscriptions.data.map((group,index)=>
-                            <Card key={index} width="150px" height="40px">
+                    {(subscriptions.data !== undefined) && subscriptions.data.map((group,index)=>
+                            <Card key={index} width="150px" height="40px" onClick={()=>history.push(`/modalgroups/${group.id}`)}>
                                 <p>{group.name}<ButtonX onClick={()=>deleteGroup(group.id,access)}>X</ButtonX></p>
                             </Card>
                         )}
@@ -64,9 +60,9 @@ export const GroupsComponent = () => {
                     <Input placeholder="search by category" value={category} onChange={(e)=>setCategory(e.target.value)} width="80%"/>
                     <ul style={{display:"flex",flexWrap:"wrap",
                     justifyContent:"space-around",alignItems:"center",padding:"5px 30px"}}>
-                        {!!groupsOfCategory && groupsOfCategory.data.results.map((group,index)=>
-                            <Card key={index} width="150px" height="40px" onClick={()=>history.push(`/modalgroups/${group.id}`)}>
-                                <p>{group.name}</p>
+                        {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((group,index)=>
+                            <Card key={index} width="150px" height="50px" style={{display:"flex"}}>                                
+                                <p onClick={()=>subscribToAGroup(group.id)}>{group.name}</p>
                             </Card>
                         )}
                     </ul>
