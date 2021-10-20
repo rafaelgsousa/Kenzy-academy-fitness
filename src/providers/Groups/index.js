@@ -18,6 +18,8 @@ export const GroupsProvider = ({children}) => {
     const access = localStorage.getItem("@KAF_userToken") || ""
 
     const createGroup = (data) =>{
+
+        console.log(data)
         axios.post("https://kenzie-habits.herokuapp.com/groups/", data,
         {
             headers: {
@@ -25,10 +27,9 @@ export const GroupsProvider = ({children}) => {
                 },
         }
         )
-        .then((_)=>{
+        .then((_)=>
             toast.sucess("created group!")
-            history.push("/dashboard")
-        })
+        )
         .catch(toast.error("failed creation!"))
     }
 
@@ -40,14 +41,13 @@ export const GroupsProvider = ({children}) => {
                 },
         }
         )
-        .then((_)=>{
+        .then((_)=>
             toast.sucess("deleted group!")
-            history.push("/dashboard")
-        })
+        )
         .catch(toast.error("failed to delete!"))
     }
 
-    const EditGroup = ({name,description,category},idGroup)=>{
+    const updateGroup = ({name,description,category},idGroup)=>{
 
         axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`,
         {name,description,category},
@@ -59,7 +59,7 @@ export const GroupsProvider = ({children}) => {
         )
         .then((_)=>{
             toast.sucess("Editing completed!")
-            history.push("/dashboard")
+            history.push("/groups")
         })
         .catch(toast.error("failed in editing!"))
     }
@@ -67,7 +67,8 @@ export const GroupsProvider = ({children}) => {
     const getGroupsForCategory = (category)=>{
         axios.get(`https://kenzie-habits.herokuapp.com/groups/?category=${category}`)
         .then(resp=>{
-            setGroupsOfCategory(resp)
+            console.log("getGrousforCategory está funcionando")
+            return setGroupsOfCategory(resp)
         })
         .catch((err)=>toast.error("search failure!"))
     }
@@ -86,7 +87,10 @@ export const GroupsProvider = ({children}) => {
                 },
         }
         )
-        .then(resp=>setSubscription(resp))
+        .then(resp=>{
+            console.log("getSubscription está funcionando")
+            return setSubscription(resp)
+        })
         .catch(err=>toast.error("search failure!"))
 
     }
@@ -101,14 +105,14 @@ export const GroupsProvider = ({children}) => {
         )
         .then((_)=>{
             toast.sucess("Successfully enrolled")
-            history.push("/dashboard")
+            history.push("/groups")
         })
         .catch(err=>toast.error("registration error!"))
     }
 
     return (
         <GroupsContext.Provider value={
-        {access,groupsOfCategory,especificGroup,subscriptions,createGroup,deleteGroup,EditGroup,
+        {access,groupsOfCategory,especificGroup,subscriptions,createGroup,deleteGroup,updateGroup,
             getGroupsForCategory,getEspecificGroup,getSubscription,subscribToAGroup}}>
             {children}
         </GroupsContext.Provider>

@@ -6,7 +6,7 @@ export const ActivitesContext = createContext();
 
 export const ActivitesProvider = ({children}) => {
 
-    const [oneActivite,setOneActivite]=useState("")
+    const [oneActivite,setOneActivite]= useState("")
 
     const [activitesOfGroup,setActivitesOfGroup] = useState([])
 
