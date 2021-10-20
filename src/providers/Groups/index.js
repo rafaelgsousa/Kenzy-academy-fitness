@@ -28,7 +28,7 @@ export const GroupsProvider = ({ children }) => {
             }
         )
             .then((_) => {
-                toast.sucess("created group!")
+                toast.success("created group!")
                 history.push("/dashboard")
             })
             .catch(toast.error("failed creation!"))
@@ -43,7 +43,7 @@ export const GroupsProvider = ({ children }) => {
             }
         )
             .then((_) => {
-                toast.sucess("deleted group!")
+                toast.success("deleted group!")
                 history.push("/dashboard")
             })
             .catch(toast.error("failed to delete!"))
@@ -60,7 +60,7 @@ export const GroupsProvider = ({ children }) => {
             }
         )
             .then((_) => {
-                toast.sucess("Editing completed!")
+                toast.success("Editing completed!")
                 history.push("/dashboard")
             })
             .catch(toast.error("failed in editing!"))
@@ -102,7 +102,7 @@ export const GroupsProvider = ({ children }) => {
             }
         )
             .then((_) => {
-                toast.sucess("Successfully enrolled")
+                toast.success("Successfully enrolled")
                 history.push("/dashboard")
             })
             .catch(err => toast.error("registration error!"))
