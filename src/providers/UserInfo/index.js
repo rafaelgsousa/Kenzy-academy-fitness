@@ -31,13 +31,42 @@ export const UserInfoProvider = ({ children }) => {
           Authorization: `Bearer ${access}`,
         },
       })
-      .then((response) => console.log(response));
+      .then((response) => setHabitsList(response.data));
+  };
+
+  const createHabit = (habit) => {
+    axios
+      .post("https://kenzie-habits.herokuapp.com/habits/", habit, {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      })
+      .then((response) => {
+        setHabitsList([...habitsList, habit]);
+        document.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteHabit = (id) => {
+    axios
+      .delete(`https://kenzie-habits.herokuapp.com/habits/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      })
+      .then((_) => document.location.reload())
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => getHabitsList(), []);
 
+  console.log(habitsList);
+
   return (
-    <UserInfoContext.Provider value={{ editUser }}>
+    <UserInfoContext.Provider
+      value={{ editUser, habitsList, createHabit, deleteHabit }}
+    >
       {children}
     </UserInfoContext.Provider>
   );

@@ -8,3 +8,9 @@ export const HabitsContent = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const HabitsListContainer = styled.div`
+  > div {
+    position: static;
+  }
+`;
