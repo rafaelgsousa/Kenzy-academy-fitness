@@ -45,7 +45,7 @@ export const GroupsComponent = () => {
                             <Input placeholder="Nome do grupo" {...register("name")} width={"400px"} height={"50px"} />
                             <Input placeholder="Descrição" {...register("description")} width={"400px"} height={"50px"} />
                             <Input placeholder="Categoria" {...register("category")} width={"400px"} height={"50px"} />
-                            <Button width={"340px"} height={"95px"} type="submit">Criar Grupo</Button>
+                            <Button width={"340px"} height={"95px"} type="submit">Gravar</Button>
                         </Form>
                     </Container>
                     :
