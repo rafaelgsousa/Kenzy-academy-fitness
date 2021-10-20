@@ -21,7 +21,7 @@ const Container = styled.div`
   width: ${(props) => props.width || "200px"};
   height: ${(props) => props.height || "200px"};
   opacity: ${(props) => props.opacity || "1.0"};
-  background-color: ${(props) => props.background || "#007aff"};
+  background-color: ${(props) => props.background || "rgba(0, 122, 255, 0.7)"};
   /* display: flex;
   flex-direction: column;
   align-items: center; */
