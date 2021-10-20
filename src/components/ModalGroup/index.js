@@ -120,22 +120,33 @@ const ModalGroup = () => {
                         <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
                     </Container>
                     : showCreateActivite ?
-                    <Container width={"440px"} height={"700px"}>
+                    <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                         <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
                         <h3>Criar Atividade</h3>
                         <form>
-                            <Input {...register("title")} placeholder="Descrição"/>
-                            <Input {...register("realization_time")} placeholder="Data para realizar"/>
-                            <Button>Criar</Button>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"}/>
+                            </Card>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("realization_time")} placeholder="Data para realizar" width={"100%"} height={"100%"}/>
+                            </Card>
+                            <Button width={"235px"} height={"75px"}>Criar</Button>
                         </form>
                     </Container>
                     :
-                    <Container width={"440px"} height={"700px"}>
-                        <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
-                        <h3>Editar Atividades</h3>
-                        <Input {...register("title")} placeholder="Descrição"/>
-                        <Input {...register("realization_time")} placeholder="Data para realizar"/>
-                        <Button>Editar</Button>
+                    
+                    <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                    <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
+                    <h3>Editar Atividade</h3>
+                    <form>
+                        <Card width={"295px"} height={"75px"}>
+                            <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"}/>
+                        </Card>
+                        <Card width={"295px"} height={"75px"}>
+                            <Input {...register("realization_time")} placeholder="Data para realizar" width={"100%"} height={"100%"}/>
+                        </Card>
+                        <Button width={"235px"} height={"75px"}>Editar</Button>
+                    </form>
                     </Container>
                     }   
                 </>
@@ -155,13 +166,19 @@ const ModalGroup = () => {
                     <Button width={"250px"} height={"50px"} onClick={()=>setShowDescriptionGroup(false)} >Editar Grupo</Button>
                 </Container>
                 :
-                <Container width={"670px"} height={"700px"}>
+                <Container width={"440px"} height={"700px"}>
                     <ButtonX onClick={() => setShowDescriptionGroup(true)}><FiX /></ButtonX>
                     <h2>Editar Grupo</h2>
-                    <Input {...register("name")} placeholder="Nome"/>
-                    <Input {...register("description")} placeholder="Descrição"/>
-                    <Input {...register("category")} placeholder="Categória"/>
-                    <Button width={"250px"} height={"50px"}>Editar Grupo</Button>
+                    <Card width={"295px"} height={"75px"}>
+                        <Input {...register("name")} placeholder="Nome" width={"100%"} height={"100%"}/>
+                    </Card>
+                    <Card width={"295px"} height={"75px"}>
+                        <Input {...register("description")} placeholder="Descrição" width={"100%"} height={"100%"}/>
+                    </Card>
+                    <Card width={"295px"} height={"75px"}>
+                        <Input {...register("category")} placeholder="Categória" width={"100%"} height={"100%"}/>
+                    </Card>
+                    <Button width={"235px"} height={"75px"}>Editar Grupo</Button>
                 </Container>
                 }
                 {showObjects &&
@@ -182,25 +199,38 @@ const ModalGroup = () => {
                             <Button onClick={showModalCreateGoal}>Criar Objetivos</Button>
                         </Container>
                         :showCreateGoal?
-                        <Container width={"440px"} height={"700px"}>
+                        <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                             <ButtonX onClick={showModalListGoal}><FiX /></ButtonX>
                             <h3>Criar Objetivos</h3>
-                            <Input {...register("title")} placeholder="Descrição"/>
-                            <Input {...register("difficulty")} placeholder="dificuldade"/>
-                            <Input {...register("how_much_achieved")} placeholder="Quantidade"/>
-                            <Button>Criar</Button>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
+                            </Card>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("difficulty")} placeholder="dificuldade" width={"100%"} height={"100%"} />
+                            </Card>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("how_much_achieved")} placeholder="Quantidade" width={"100%"} height={"100%"} />
+                            </Card>
+                            <Button width={"235px"} height={"75px"}>Criar</Button>
                         </Container>
                         :
                         <Container width={"440px"} height={"700px"}>
                             <ButtonX onClick={showModalListGoal}><FiX /></ButtonX>
                             <h3>EditarObjetivos</h3>
-                            <Input {...register("title")} placeholder="Descrição"/>
-                            <Input {...register("difficulty")} placeholder="dificuldade"/>
-                            <Input {...register("how_much_achieved")} placeholder="Quantidade"/>
-                            <label>
-                            <Input type="checkbox" value={true} {...register("achieved")}/>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
+                            </Card>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("difficulty")} placeholder="dificuldade" width={"100%"} height={"100%"} />
+                            </Card>
+                            <Card width={"295px"} height={"75px"}>
+                                <Input {...register("how_much_achieved")} placeholder="Quantidade" width={"100%"} height={"100%"} />
+                            </Card>
+                            <label form="alcançada" style={{display:"flex",alignItems:"center"}}>
+                                <p>Alcançada:</p>
+                                <Input type="checkbox" value={true} {...register("achieved")} id="alcançada"/>
                             </label>
-                            <Button>Editar</Button>
+                            <Button width={"235px"} height={"75px"}>Editar</Button>
                         </Container>
                         }
                     </>
