@@ -14,7 +14,7 @@ export const Groups = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup } = useContext(GroupsContext)
 
-
+    console.log("Categoria dos grupos", !!groupsOfCategory.length, groupsOfCategory.data)
 
     useEffect(() => {
         getSubscription()
@@ -29,7 +29,7 @@ export const Groups = () => {
     return (
         <Box>
             <Blur />
-            <Container width={"600px"} height={"760px"} background={"rgba(0, 122, 255, 0.7)"}>
+            <Container width={"600px"} height={"760px"}>
                 <h2>Meu Grupos</h2>
                 <Content>
                     {
@@ -45,16 +45,16 @@ export const Groups = () => {
                     <Button width={"340px"} height={"95px"}>Criar Grupo</Button>
                 </Content>
             </Container>
-            <Container width={"1140px"} height={"760px"} background={"rgba(0, 122, 255, 0.7)"}>
+            <Container width={"1140px"} height={"760px"} >
                 <h2>Procurar Grupos</h2>
                 <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} />
                 <Content>
-                    {/* {!!groupsOfCategory.data.results && groupsOfCategory.data.results.map((groups, index) =>
+                    {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                         <Card key={index} height={"50px"}>
                             <ButtonX><FiX /></ButtonX>
                             <TextCard>{groups.name}</TextCard>
                         </Card>
-                    )} */}
+                    )}
                 </Content>
             </Container>
         </Box>
