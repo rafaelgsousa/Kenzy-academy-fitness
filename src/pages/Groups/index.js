@@ -1,59 +1,65 @@
-import { useContext, useEffect,useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "../../components/Container";
-import {Input} from "../../components/Input/index";
 import { Button } from "../../components/Button";
-import { Card } from "../../components/Card";
-import { GroupsContext} from "../../providers/Groups";
-import {Main} from "./style"
+import { Card, TextCard } from "../../components/Card";
+import { GroupsContext } from "../../providers/Groups";
+import { Blur, Box, Content, Input } from "./style"
 import { ButtonX } from "../../components/ButtonX";
+import { FiPlus, FiX } from "react-icons/fi";
+import ModalGroup from '../../components/ModalGroup'
 
 export const Groups = () => {
 
-    const [category,setCategory] = useState("")
+    const [category, setCategory] = useState("")
 
-    const {access,subscriptions,groupsOfCategory,getSubscription,
-        getGroupsForCategory,deleteGroup} = useContext(GroupsContext)
-    
-    
+    const { access, subscriptions, groupsOfCategory, getSubscription,
+        getGroupsForCategory, deleteGroup, toShowModalGroup, showModal } = useContext(GroupsContext)
 
-    useEffect(()=>{
+    useEffect(() => {
         getSubscription()
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        console.log("category:",category)
+    useEffect(() => {
         getGroupsForCategory(category)
-    },[category])
+    }, [category])
 
 
     return (
         <>
-            <Main>
-                <Container height="400px" width="300px" opacity="0.9">
-                    <Card height="30px" width="80%">My Groups</Card>
-                    {console.log(subscriptions)}
-                    {subscriptions.data.map((group,index)=>
-                            <Card key={index} width="150px" height="40px">
-                                <p>{group.name}<ButtonX onClick={()=>deleteGroup(group.id,access)}>X</ButtonX></p>
+            <Box>
+                <Blur />
+                <Container width={"600px"} height={"760px"}>
+                    <h2>Meu Grupos</h2>
+                    <Content>
+                        {
+                            !!subscriptions.data && subscriptions.data.map((group, index) =>
+                                <Card key={index} onClick={toShowModalGroup}>
+                                    <ButtonX onClick={() => deleteGroup(group.id, access)}><FiX /></ButtonX>
+                                    <TextCard>{group.name}</TextCard>
+                                    <TextCard>{group.description}</TextCard>
+                                    <TextCard>{group.category}</TextCard>
+                                </Card>
+                            )
+                        }
+                        <Button width={"340px"} height={"95px"}>Criar Grupo</Button>
+                    </Content>
+                </Container>
+                <Container width={"1140px"} height={"760px"} >
+                    <h2>Procurar Grupos</h2>
+                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <Content>
+                        {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
+                            <Card key={index} height={"50px"} onClick={toShowModalGroup}>
+                                <TextCard>{groups.name}</TextCard>
+                                <ButtonX><FiPlus /></ButtonX>
                             </Card>
                         )}
-                    <Button>Create group</Button>
+                    </Content>
                 </Container>
-                <Container height="400px" width="600px" opacity="0.9">
-                    <Card height="30px" width="80%" >Procurar Grupos</Card>
-                    <Input placeholder="search by category" value={category} onChange={(e)=>setCategory(e.target.value)} width="80%"/>
-                    <ul style={{display:"flex",flexWrap:"wrap",
-                    justifyContent:"space-around",alignItems:"center",padding:"5px 30px"}}>
-                        {console.log("categoria:",groupsOfCategory)}
-                        {groupsOfCategory.data.results.map((groups,index)=>
-                            <Card key={index} width="150px" height="40px">
-                                <p>{groups.name}</p>
-                            </Card>
-                        )}
-                    </ul>
-                </Container>
-            </Main>
-            <Card width="100%">Copyright 2021 Todos os diretos reservados.</Card>
+            </Box>
+            {
+                !!showModal && <ModalGroup />
+            }
         </>
     )
 }

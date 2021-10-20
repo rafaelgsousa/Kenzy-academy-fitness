@@ -6,7 +6,7 @@ export const Blur = styled.div`
     left: 0;
     height: 100vh;
     width: 100vw;
-    filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
 `
 
 export const Content = styled.div`
@@ -19,7 +19,7 @@ export const Content = styled.div`
     font-family: 'Roboto';
     letter-spacing: 1.2px;
     font-weight: 300;
-    z-index: 1;
+    z-index: 10;
 
     > div{
         margin: 0 1rem;
@@ -42,4 +42,12 @@ export const GroupButton = styled.div`
     margin: 2.5rem 0;
     display: flex;
     justify-content: space-around;
+`
+
+export const Box = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 `

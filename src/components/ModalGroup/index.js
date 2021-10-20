@@ -1,25 +1,30 @@
 import Container from '../Container'
-import { Blur, Content, GroupButton } from './styles'
+import { Blur, Box, Content, GroupButton } from './styles'
 import { Card, TextCard } from '../Card'
 import { Button } from '../Button'
 import { ButtonX } from '../ButtonX'
 import { FiX } from 'react-icons/fi'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { GroupsContext } from '../../providers/Groups'
 
 const ModalGroup = () => {
 
     const [showActivities, setShowActivities] = useState(false)
     const [showObjects, setShowObjects] = useState(false)
 
+    const { toShowModalGroup } = useContext(GroupsContext)
+
     const handleShowActivities = () => setShowActivities(!showActivities)
     const handleShowObjects = () => setShowObjects(!showObjects)
 
+
+
     return (
-        <>
+        <Box>
             <Blur />
             <Content>
                 {showActivities &&
-                    <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                    <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={handleShowActivities}><FiX /></ButtonX>
                         <h3>Atividades</h3>
                         <Card>
@@ -32,8 +37,8 @@ const ModalGroup = () => {
                     </Container>
                 }
 
-                <Container width={"670px"} height={"700px"} opacity={"0.7"}>
-                    <ButtonX><FiX /></ButtonX>
+                <Container width={"670px"} height={"700px"}>
+                    <ButtonX onClick={toShowModalGroup}><FiX /></ButtonX>
                     <h2>Nome do Grupo</h2>
                     <h3>Categoria</h3>
                     <Card width={"550px"} height={"300px"}>
@@ -47,7 +52,7 @@ const ModalGroup = () => {
                 </Container>
 
                 {showObjects &&
-                    <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                    <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={handleShowObjects}><FiX /></ButtonX>
                         <h3>Objetivos</h3>
                         <Card>
@@ -57,7 +62,7 @@ const ModalGroup = () => {
                     </Container>
                 }
             </Content>
-        </>
+        </Box>
     )
 }
 
