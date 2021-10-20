@@ -32,7 +32,7 @@ const ModalGroup = () => {
                     </Container>
                 }
 
-                <Container width={"670px"} height={"700px"} opacity={"0.7"}>
+                <Container width={"670px"} height={"700px"}>
                     <ButtonX><FiX /></ButtonX>
                     <h2>Nome do Grupo</h2>
                     <h3>Categoria</h3>

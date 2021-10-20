@@ -19,7 +19,7 @@ const ModalCreatEditGoals = () => {
             <Blur />
             <Content>
                 {/* {showModalGoals && */}
-                <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                <Container width={"440px"} height={"700px"}>
                     <ButtonX onClick={handleShowModalGoals}><FiX /></ButtonX>
                     <h3>Objetivos</h3>
                     <Card width={"295px"} height={"75px"}>
