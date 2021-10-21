@@ -35,6 +35,10 @@ export const GroupsComponent = () => {
 
     const onCreateCategory = (data) => createGroup(data)
 
+    const onSubscribToAGroup = (id) => {
+        return subscribToAGroup(id)
+    }
+
     return (
         <>
             <Box>
@@ -83,14 +87,13 @@ export const GroupsComponent = () => {
                     <h2>Procurar Grupos</h2>
                     <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} width={"590px"} height={"35px"} />
                     <Content>
+                        {console.log(groupsOfCategory)}
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
-                            <Card key={index} height={"50px"} onClick={() => history.push(`/modalgroups/${groups.id}`)}>
-                                <TextCard>{groups.name}</TextCard>
+                            <Card key={index} height={"50px"}>
+                                <TextCard onClick={() => history.push(`/modalgroups/${groups.id}`)}>{groups.name}</TextCard>
                                 <ButtonX
                                     onClick={
-                                        (e) => {
-                                            e.stopPropagation()
-                                        }
+                                        ()=>onSubscribToAGroup(groups.id)                                        
                                     }><FiPlus /></ButtonX>
                             </Card>
                         )}
