@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { FiPlus, FiX } from "react-icons/fi";
 
 export const GroupsComponent = () => {
-
+    console.log("loop")
     const { register, handleSubmit } = useForm()
 
     const [showCreateGroup, setShowCreateGroup] = useState(false)

@@ -25,8 +25,6 @@ const ModalGroup = () => {
 
     const { especificGroup, getEspecificGroup, updateGroup } = useContext(GroupsContext)
 
-    console.log(activitesOfGroup)
-
     useEffect(() =>
         getEspecificGroup(idgroup)
         // eslint-disable-next-line

@@ -18,11 +18,10 @@ const FormLogin = () => {
             username: username,
             password: password
         }
-        console.log("qualquercoisa")
+
         axios.post("https://kenzie-habits.herokuapp.com/sessions/", Login)
             .then((response) => {
                 toast.success("Login Success")
-                console.log(response)
 
                 const jwt = jwt_decode(response.data.access)
 
