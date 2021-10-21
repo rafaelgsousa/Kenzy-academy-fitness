@@ -287,8 +287,9 @@ return (
                             <Card width={"295px"} height={"75px"}>
                                 <Input {...register("category")} placeholder="Categoria" width={"100%"} height={"100%"}/>
                             </Card>
+                            <Button width={"235px"} height={"75px"} type="submit">Editar Grupo</Button>
                         </form>
-                        <Button width={"235px"} height={"75px"} type="submit">Editar Grupo</Button>
+                        
                     </Container>
                 }
                 {showObjects &&
