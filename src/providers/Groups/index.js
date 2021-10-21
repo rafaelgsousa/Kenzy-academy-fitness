@@ -28,7 +28,7 @@ export const GroupsProvider = ({ children }) => {
             .then((_) =>
                 toast.success("created group!")
             )
-            .catch(toast.error("failed creation!"))
+            .catch((_) => toast.error("failed creation!"))
     }
 
     const deleteGroup = (id, access) => {
@@ -39,15 +39,15 @@ export const GroupsProvider = ({ children }) => {
                 },
             }
         )
-            .then((_) =>
+            .then((_) => {
                 toast.success("deleted group!")
-            )
-            .catch(toast.error("failed to delete!"))
+            })
+            .catch((_) => toast.error("failed to delete!"))
     }
 
-    const updateGroup = (data,idGroup) => {
+    const updateGroup = (data, idGroup) => {
 
-        axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`,data,
+        axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`, data,
             {
                 headers: {
                     Authorization: `Bearer ${access}`,
@@ -58,21 +58,21 @@ export const GroupsProvider = ({ children }) => {
                 toast.success("Editing completed!")
                 history.push("/groups")
             })
-            .catch(toast.error("failed in editing!"))
+            .catch((_) => toast.error("failed in editing!"))
     }
 
     const getGroupsForCategory = (category) => {
-        axios.get(`https://kenzie-habits.herokuapp.com/groups/?category=${category}`)
+        axios.get(`https://kenzie-habits.herokuapp.com/groups/${category}`)
             .then(resp => {
                 return setGroupsOfCategory(resp)
             })
-            .catch((err) => toast.error("search failure!"))
+            .catch((_) => toast.error("search failure!"))
     }
 
     const getEspecificGroup = (idGroup) => {
         axios.get(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`)
             .then(resp => setEspecificGroup(resp))
-            .catch((err) => toast.error("search failure!"))
+            .catch((_) => toast.error("search failure!"))
     }
 
     const getSubscription = () => {
@@ -86,7 +86,7 @@ export const GroupsProvider = ({ children }) => {
             .then(resp => {
                 return setSubscription(resp)
             })
-            .catch(err => toast.error("search failure!"))
+            .catch((_) => toast.error("search failure!"))
 
     }
 
@@ -105,7 +105,7 @@ export const GroupsProvider = ({ children }) => {
                 toast.success("Successfully enrolled")
                 return history.push("/groups")
             })
-            .catch(err =>console.log(err))
+            .catch((_) => toast.error("registration error!"))
     }
 
     return (

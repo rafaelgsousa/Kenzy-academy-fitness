@@ -19,7 +19,7 @@ const ModalCreatEditActivities = () => {
             <Blur />
             <Content>
                 {/* {showModalActivities && */}
-                <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                <Container width={"440px"} height={"700px"}>
                     <ButtonX onClick={handleShowModalActivities}><FiX /></ButtonX>
                     <h3>Atividades</h3>
                     <Card width={"295px"} height={"75px"}>
