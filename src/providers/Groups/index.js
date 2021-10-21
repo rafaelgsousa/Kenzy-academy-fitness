@@ -15,7 +15,7 @@ export const GroupsProvider = ({ children }) => {
 
     const history = useHistory()
 
-    const access = localStorage.getItem("@KAF_userToken") || ""
+    const access = JSON.parse(localStorage.getItem("@KAF_userToken")) || ""
 
     const createGroup = (data) => {
         axios.post("https://kenzie-habits.herokuapp.com/groups/", data,
@@ -45,10 +45,9 @@ export const GroupsProvider = ({ children }) => {
             .catch(toast.error("failed to delete!"))
     }
 
-    const updateGroup = ({ name, description, category }, idGroup) => {
+    const updateGroup = (data,idGroup) => {
 
-        axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`,
-            { name, description, category },
+        axios.patch(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/`,data,
             {
                 headers: {
                     Authorization: `Bearer ${access}`,

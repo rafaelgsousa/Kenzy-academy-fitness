@@ -10,3 +10,17 @@ export const UserContainer = styled.div`
     color: white;
   }
 `;
+
+export const UserInfoContainer = styled.div`
+  display: flex;
+  > div {
+    &:hover {
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      margin-left: 50px;
+    }
+  }
+`;

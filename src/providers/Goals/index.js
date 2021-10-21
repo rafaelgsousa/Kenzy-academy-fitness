@@ -34,12 +34,13 @@ export const GoalsProvider = ({children}) => {
                 },
         }
         )
-        .then((_)=>toast.success("Created goal with sucess!"))
+        .then((_)=>toast.success("Delete goal with success!"))
         .catch((_)=>toast.error("Error!"))
     }
 
-    const updateGoal = ({title,difficulty,how_much_achieved,group},idGoal) => {
-        const data = {title,difficulty,how_much_achieved,group}
+    const updateGoal = (data,idGoal) => {
+        console.log("data",data)
+        console.log("idGoal",idGoal)
         axios.patch(`https://kenzie-habits.herokuapp.com/goals/${idGoal}/`,
         data,
         {
