@@ -34,8 +34,6 @@ const FormLogin = () => {
         .catch((err) => toast.error("Login Fail"))
     }
 
-
-
     return(
         <div>
             <form onSubmit={(evt) => SubmitLogin(evt)}>
