@@ -16,6 +16,8 @@ export const GroupsComponent = () => {
 
     const [showCreateGroup, setShowCreateGroup] = useState(false)
 
+    const [numberPage, setNumberPage] = useState(1)
+
     const history = useHistory()
 
     const [category, setCategory] = useState("")
@@ -23,17 +25,40 @@ export const GroupsComponent = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    useEffect(() =>
+    console.log(groupsOfCategory);
+
+    useEffect(() => {
         getSubscription()
+        return (() => getSubscription())
         // eslint-disable-next-line
-        , [])
+    }, [])
 
-    useEffect(() =>
-        getGroupsForCategory(category)
+    const loadGroupsForCategory = () => {
+        getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+    }
+
+    useEffect(() => {
+        loadGroupsForCategory()
+        return (() => {
+            getGroupsForCategory([])
+        })
         // eslint-disable-next-line
-        , [category])
+    }, [])
 
-    const onCreateCategory = (data) => createGroup(data)
+    const onCreateCategory = (data) => {
+        createGroup(data)
+        getSubscription()
+    }
+
+    const handleAddPagination = () => {
+        if (numberPage < Math.ceil(groupsOfCategory.data.count / 15)) setNumberPage(numberPage + 1)
+        loadGroupsForCategory()
+    }
+
+    const handleSubPagination = () => {
+        if (numberPage > 0 && numberPage !== 1) setNumberPage(numberPage - 1)
+        loadGroupsForCategory()
+    }
 
     return (
         <>
@@ -53,7 +78,7 @@ export const GroupsComponent = () => {
                     :
                     <Container width={"600px"} height={"760px"}>
                         <h2>Meu Grupos</h2>
-                        <Content>
+                        <Content style={{ overflow: "auto", height: "460px", alignContent: "flex-start" }}>
                             {
                                 (subscriptions.data !== undefined) && subscriptions.data.map((group, index) =>
                                     <Card
@@ -67,6 +92,7 @@ export const GroupsComponent = () => {
                                                 (e) => {
                                                     e.stopPropagation()
                                                     deleteGroup(group.id, access)
+                                                    getSubscription()
                                                 }
                                             }><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
@@ -81,7 +107,17 @@ export const GroupsComponent = () => {
                 }
                 <Container width={"1140px"} height={"760px"} >
                     <h2>Procurar Grupos</h2>
-                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} width={"590px"} height={"35px"} />
+                    <Input
+                        placeholder="Pesquisar por Categoria"
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value)
+                            setNumberPage(1)
+                            loadGroupsForCategory()
+                        }}
+                        width={"590px"}
+                        height={"35px"}
+                    />
                     <Content>
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"} onClick={() => history.push(`/modalgroups/${groups.id}`)}>
@@ -95,6 +131,23 @@ export const GroupsComponent = () => {
                             </Card>
                         )}
                     </Content>
+                    <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+                        {numberPage !== 1 ?
+                            <Button
+                                onClick={handleSubPagination}
+                            >Previous</Button>
+                            :
+                            <Button disabled>Previous</Button>
+                        }
+                        <span style={{ margin: "1rem" }}>{numberPage}</span>
+                        {((groupsOfCategory.data !== undefined) && (numberPage < Math.ceil(groupsOfCategory.data.count / 15))) ?
+                            <Button
+                                onClick={handleAddPagination}
+                            >Next</Button>
+                            :
+                            <Button disabled>Previous</Button>
+                        }
+                    </div>
                 </Container>
             </Box>
         </>
