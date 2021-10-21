@@ -16,6 +16,8 @@ export const GroupsComponent = () => {
 
     const [showCreateGroup, setShowCreateGroup] = useState(false)
 
+    const [numberPage, setNumberPage] = useState(1)
+
     const history = useHistory()
 
     const [category, setCategory] = useState("")
@@ -23,17 +25,28 @@ export const GroupsComponent = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    useEffect(() =>
+    useEffect(() => {
         getSubscription()
+        return (() => getSubscription)
         // eslint-disable-next-line
-        , [])
+    }, [getSubscription])
 
-    useEffect(() =>
-        getGroupsForCategory(category)
+    useEffect(() => {
+        !!category && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+        getGroupsForCategory(`?page=${numberPage}`)
+        return (() => groupsOfCategory)
         // eslint-disable-next-line
-        , [category])
+    }, [category, groupsOfCategory])
 
     const onCreateCategory = (data) => createGroup(data)
+
+    const handleAddPagination = () => {
+        setNumberPage(numberPage + 1)
+    }
+
+    const handleSubPagination = () => {
+        if (numberPage > 0 && numberPage !== 1) setNumberPage(numberPage - 1)
+    }
 
     return (
         <>
@@ -81,7 +94,16 @@ export const GroupsComponent = () => {
                 }
                 <Container width={"1140px"} height={"760px"} >
                     <h2>Procurar Grupos</h2>
-                    <Input placeholder="Pesquisar por Categoria" value={category} onChange={(e) => setCategory(e.target.value)} width={"590px"} height={"35px"} />
+                    <Input
+                        placeholder="Pesquisar por Categoria"
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value)
+                            setNumberPage(1)
+                        }}
+                        width={"590px"}
+                        height={"35px"}
+                    />
                     <Content>
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"} onClick={() => history.push(`/modalgroups/${groups.id}`)}>
@@ -95,6 +117,17 @@ export const GroupsComponent = () => {
                             </Card>
                         )}
                     </Content>
+                    <div>
+                        {numberPage !== 1 &&
+                            <button
+                                onClick={handleSubPagination}
+                            >Previous</button>
+                        }
+                        {numberPage}
+                        <button
+                            onClick={handleAddPagination}
+                        >Next</button>
+                    </div>
                 </Container>
             </Box>
         </>

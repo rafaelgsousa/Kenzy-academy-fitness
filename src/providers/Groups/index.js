@@ -63,7 +63,7 @@ export const GroupsProvider = ({ children }) => {
     }
 
     const getGroupsForCategory = (category) => {
-        axios.get(`https://kenzie-habits.herokuapp.com/groups/?category=${category}`)
+        axios.get(`https://kenzie-habits.herokuapp.com/groups/${category}`)
             .then(resp => {
                 return setGroupsOfCategory(resp)
             })
