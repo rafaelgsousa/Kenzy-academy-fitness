@@ -60,6 +60,10 @@ export const GroupsComponent = () => {
         loadGroupsForCategory()
     }
 
+    const onSubscribToAGroup = (id) => {
+        return subscribToAGroup(id)
+    }
+
     return (
         <>
             <Box>
@@ -119,14 +123,13 @@ export const GroupsComponent = () => {
                         height={"35px"}
                     />
                     <Content>
+                        {console.log(groupsOfCategory)}
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
-                            <Card key={index} height={"50px"} onClick={() => history.push(`/modalgroups/${groups.id}`)}>
-                                <TextCard>{groups.name}</TextCard>
+                            <Card key={index} height={"50px"}>
+                                <TextCard onClick={() => history.push(`/modalgroups/${groups.id}`)}>{groups.name}</TextCard>
                                 <ButtonX
                                     onClick={
-                                        (e) => {
-                                            e.stopPropagation()
-                                        }
+                                        ()=>onSubscribToAGroup(groups.id)                                        
                                     }><FiPlus /></ButtonX>
                             </Card>
                         )}

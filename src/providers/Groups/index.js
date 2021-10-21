@@ -91,6 +91,9 @@ export const GroupsProvider = ({ children }) => {
     }
 
     const subscribToAGroup = (idGroup) => {
+
+        console.log(idGroup)
+        
         axios.post(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/subscribe/`,
             {
                 headers: {
@@ -100,7 +103,7 @@ export const GroupsProvider = ({ children }) => {
         )
             .then((_) => {
                 toast.success("Successfully enrolled")
-                history.push("/groups")
+                return history.push("/groups")
             })
             .catch((_) => toast.error("registration error!"))
     }
