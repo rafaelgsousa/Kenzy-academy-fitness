@@ -75,7 +75,7 @@ export const GroupsComponent = () => {
                     :
                     <Container width={"600px"} height={"760px"}>
                         <h2>Meu Grupos</h2>
-                        <Content style={{ overflow: "auto", height: "450px" }}>
+                        <Content style={{ overflow: "auto", height: "460px", alignContent: "flex-start" }}>
                             {
                                 (subscriptions.data !== undefined) && subscriptions.data.map((group, index) =>
                                     <Card
