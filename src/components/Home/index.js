@@ -12,10 +12,9 @@ import { toast } from 'react-toastify';
 const Home = () => {
 
     const history = useHistory()
+    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
     const goTodash = () => {
-
-        const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
         if (token) {
 
@@ -45,14 +44,14 @@ const Home = () => {
                         <div className="training">
                             <p>#Training <br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Like a Dev</p>
                         </div>
-                        <nav onClick={logout} className="signup">Logout</nav>
-                        <nav onClick={() => history.push("/login")} className="login">Login</nav>
-                        <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>
+                        {token && <nav onClick={logout} className="signup">Logout</nav>}
+                        {!token && <nav onClick={() => history.push("/login")} className="login">Login</nav>}
+                        {!token && <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>}
                     </div>
                     <div className="buttons">
                         <Button>Quem Somos</Button>
                         <Button>Planos</Button>
-                        <Button onClick={goTodash}>Dashboard</Button>
+                        {token && <Button onClick={goTodash}>Dashboard</Button>}
                     </div>
                 </header>
                 <div className="container">
