@@ -58,9 +58,15 @@ export const GroupsComponent = () => {
         getSubscription()
     }
 
-    const handleSubPagination = () => { }
+    const handleAddPagination = () => {
+        if (numberPage < Math.ceil(groupsOfCategory.data.count / 15)) setNumberPage(numberPage + 1)
+        loadGroupsForCategory()
+    }
 
-    const handleAddPagination = () => { }
+    const handleSubPagination = () => {
+        if (numberPage > 0 && numberPage !== 1) setNumberPage(numberPage - 1)
+        loadGroupsForCategory()
+    }
 
     return (
         <>
