@@ -12,9 +12,9 @@ export const ActivitesProvider = ({children}) => {
 
     const access = localStorage.getItem("@KAF_userToken") || ""
 
-    const createActivites = ({title,realization_time,group}) => {
+    const createActivites = ({title,realization_time,idgroup}) => {
 
-        const data = {title,realization_time,group}
+        const data = {title,realization_time,idgroup}
 
         axios.post("https://kenzie-habits.herokuapp.com/activities/",data,
         {
@@ -27,11 +27,11 @@ export const ActivitesProvider = ({children}) => {
         .catch((_)=>toast.error("error in creation!"))
     }
 
-    const updateActivity = ({title,realization_time,group},id) => {
+    const updateActivity = ({title,realization_time},idactivite) => {
 
-        const data = {title,realization_time,group}
+        const data = {title,realization_time}
 
-        axios.patch(`https://kenzie-habits.herokuapp.com/activities/${id}/`,data,
+        axios.patch(`https://kenzie-habits.herokuapp.com/activities/${idactivite}/`,data,
         {
             headers: {
                 Authorization: `Bearer ${access}`,
