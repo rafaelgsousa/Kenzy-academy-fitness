@@ -123,9 +123,6 @@ const ModalGroup = () => {
         }
     }
 
-    const onDeleteactivite = () => {
-        deleteActivity(idActivite)
-    }
 
     //Funções para criar, editar e deletar metas
 
@@ -162,11 +159,6 @@ const ModalGroup = () => {
             updateGoal({ title, difficulty, how_much_achieved, achieved }, id)
         }
 
-    }
-
-    const onDeleteGoal = () => {
-        console.log("id", idGoal)
-        deleteGoal(idGoal)
     }
 
 
@@ -215,7 +207,7 @@ const ModalGroup = () => {
                                             {console.log("id no card", activite.id)}
                                             <ButtonX onClick={() => {
                                                 setIdActivite(activite.id)
-                                                onDeleteactivite()
+                                                deleteActivity(activite.id)
                                             }}><FiX /></ButtonX>
                                             <div onClick={() => {
                                                 setIdActivite(activite.id)
@@ -304,7 +296,7 @@ const ModalGroup = () => {
                                         <Card key={index} >
                                             <ButtonX onClick={() => {
                                                 setIdGoal(goal.id)
-                                                onDeleteGoal()
+                                                deleteGoal(goal.id)
                                             }}><FiX /></ButtonX>
                                             <div onClick={() => {
                                                 setIdGoal(goal.id)

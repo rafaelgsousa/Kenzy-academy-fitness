@@ -10,7 +10,7 @@ export const ActivitesProvider = ({ children }) => {
 
     const [activitesOfGroup, setActivitesOfGroup] = useState([])
 
-    const access = localStorage.getItem("@KAF_userToken") || ""
+    const access = JSON.parse(localStorage.getItem("@KAF_userToken")) || ""
 
     const createActivites = (data) => {
 
@@ -21,13 +21,11 @@ export const ActivitesProvider = ({ children }) => {
                 },
             }
         )
-            .then((_) => toast.success("activities created!"))
-            .catch((_) => toast.error("error in creation!"))
+        .then((_) => toast.success("activities created!"))
+        .catch((_) => toast.error("error in creation!"))
     }
 
-    const updateActivity = ({ title, realization_time }, idactivite) => {
-
-        const data = { title, realization_time }
+    const updateActivity = (data, idactivite) => {
 
         axios.patch(`https://kenzie-habits.herokuapp.com/activities/${idactivite}/`, data,
             {

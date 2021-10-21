@@ -10,7 +10,7 @@ export const GoalsProvider = ({ children }) => {
 
     const [goalsGroup, setGoalsGroup] = useState([])
 
-    const access = localStorage.getItem("@KAF_userToken") || ""
+    const access = JSON.parse(localStorage.getItem("@KAF_userToken")) || ""
 
     const createGoal = ({ title, difficulty, how_much_achieved, group }) => {
 

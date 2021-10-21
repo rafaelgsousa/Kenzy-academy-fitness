@@ -60,10 +60,6 @@ export const GroupsComponent = () => {
         loadGroupsForCategory()
     }
 
-    const onSubscribToAGroup = (id) => {
-        return subscribToAGroup(id)
-    }
-
     return (
         <>
             <Box>
@@ -96,7 +92,6 @@ export const GroupsComponent = () => {
                                                 (e) => {
                                                     e.stopPropagation()
                                                     deleteGroup(group.id, access)
-                                                    getSubscription()
                                                 }
                                             }><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
@@ -129,7 +124,7 @@ export const GroupsComponent = () => {
                                 <TextCard onClick={() => history.push(`/modalgroups/${groups.id}`)}>{groups.name}</TextCard>
                                 <ButtonX
                                     onClick={
-                                        ()=>onSubscribToAGroup(groups.id)                                        
+                                        ()=>subscribToAGroup(groups.id)                                        
                                     }><FiPlus /></ButtonX>
                             </Card>
                         )}

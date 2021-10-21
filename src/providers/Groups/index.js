@@ -97,6 +97,11 @@ export const GroupsProvider = ({ children }) => {
         axios.post(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/subscribe/`,
             {
                 headers: {
+                    null: '',
+                },
+            },
+            {
+                headers: {
                     Authorization: `Bearer ${access}`,
                 },
             }
