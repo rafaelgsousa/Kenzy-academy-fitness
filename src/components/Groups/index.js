@@ -20,32 +20,42 @@ export const GroupsComponent = () => {
 
     const history = useHistory()
 
-    const [category, setCategory] = useState(null)
+    const [category, setCategory] = useState("")
 
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
     useEffect(() => {
         getSubscription()
-        return (() => getSubscription)
+        return (() => getSubscription())
         // eslint-disable-next-line
-    }, [getSubscription])
+    }, [])
+
+    const loadGroupsForCategory = () => {
+        getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+    }
 
     useEffect(() => {
-        !!category && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
-        getGroupsForCategory(`?page=${numberPage}`)
-        return (() => groupsOfCategory)
+        loadGroupsForCategory()
+        return (() => {
+            getGroupsForCategory([])
+        })
         // eslint-disable-next-line
-    }, [!!category ? (category) : (groupsOfCategory)])
+    }, [])
 
-    const onCreateCategory = (data) => createGroup(data)
+    const onCreateCategory = (data) => {
+        createGroup(data)
+        getSubscription()
+    }
 
     const handleAddPagination = () => {
         setNumberPage(numberPage + 1)
+        loadGroupsForCategory()
     }
 
     const handleSubPagination = () => {
         if (numberPage > 0 && numberPage !== 1) setNumberPage(numberPage - 1)
+        loadGroupsForCategory()
     }
 
     return (
@@ -56,7 +66,11 @@ export const GroupsComponent = () => {
                     <Container width={"600px"} height={"760px"}>
                         <h2>Criar Grupo</h2>
                         <Form onSubmit={handleSubmit(onCreateCategory)}>
-                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => setShowCreateGroup(false)} ><FiX /></ButtonX>
+                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => {
+                                getSubscription()
+                                setShowCreateGroup(false)
+                            }
+                            } ><FiX /></ButtonX>
                             <Input placeholder="Nome do grupo" {...register("name")} width={"400px"} height={"50px"} />
                             <Input placeholder="Descrição" {...register("description")} width={"400px"} height={"50px"} />
                             <Input placeholder="Categoria" {...register("category")} width={"400px"} height={"50px"} />
@@ -80,6 +94,7 @@ export const GroupsComponent = () => {
                                                 (e) => {
                                                     e.stopPropagation()
                                                     deleteGroup(group.id, access)
+                                                    getSubscription()
                                                 }
                                             }><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
@@ -100,6 +115,7 @@ export const GroupsComponent = () => {
                         onChange={(e) => {
                             setCategory(e.target.value)
                             setNumberPage(1)
+                            loadGroupsForCategory()
                         }}
                         width={"590px"}
                         height={"35px"}
