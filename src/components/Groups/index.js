@@ -9,6 +9,8 @@ import { ButtonX } from "../../components/ButtonX";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { FiPlus, FiX } from "react-icons/fi";
+import UserHeaderGroup from "../UserHeaderGroup";
+import UserFooterGroup from "../UserFooterGroup";
 
 export const GroupsComponent = () => {
 
@@ -66,6 +68,7 @@ export const GroupsComponent = () => {
 
     return (
         <>
+            <UserHeaderGroup />
             <Box>
                 <Blur />
                 {showCreateGroup ?
@@ -156,6 +159,7 @@ export const GroupsComponent = () => {
                     </div>
                 </Container>
             </Box>
+            <UserFooterGroup />
         </>
     )
 }
