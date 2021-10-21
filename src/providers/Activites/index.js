@@ -10,7 +10,7 @@ export const ActivitesProvider = ({ children }) => {
 
     const [activitesOfGroup, setActivitesOfGroup] = useState([])
 
-    const access = localStorage.getItem("@KAF_userToken") || ""
+    const access = JSON.parse(localStorage.getItem("@KAF_userToken")) || ""
 
     const createActivites = (data) => {
 
