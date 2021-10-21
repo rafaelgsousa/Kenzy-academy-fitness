@@ -1,35 +1,59 @@
 import { useHistory } from "react-router";
 import Container from "../../components/Container";
 import { Button } from "../../components/Button";
-import { UserContainer } from "./styles";
+import { UserContainer, UserInfoContainer } from "./styles";
 import UserHeader from "../../components/UserHeader";
 import UserFooter from "../../components/UserFooter";
+import EditUserModal from "../../components/EditUserModal";
+import { useState, useContext, useEffect } from "react/cjs/react.development";
+import { UserInfoContext } from "../../providers/UserInfo";
 
 function Dashboard() {
+  const { editUser, getHabitsList } = useContext(UserInfoContext);
   const history = useHistory();
-  //   const token = localStorage.getItem("@KAF_userToken");
+  const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+  const name = localStorage.getItem("@KAF_userName");
+  const [editUserModal, setEditUserModal] = useState(false);
+  const [username, setUsername] = useState(name);
 
-  //   if (!token) {
-  //     history.push("/");
-  //   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => getHabitsList(), []);
+
+  if (!token) {
+    history.push("/");
+  }
 
   return (
     <>
       <UserHeader />
+      {editUserModal && (
+        <EditUserModal
+          setEditUserModal={setEditUserModal}
+          editUser={editUser}
+          setUsername={setUsername}
+        />
+      )}
       <UserContainer>
         <Container height={"250px"}>
-          <h2>Nome do usuário</h2>
-          <h3>Email</h3>
-          <Button>Editar Perfil</Button>
+          <h2>{username}</h2>
+          <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button>
         </Container>
-        <Container width={"250px"} height={"400px"}>
-          <h2>Hábitos</h2>
-          <Button onClick={() => history.push("/habits")}>Ver Hábitos</Button>
-        </Container>
-        <Container width={"250px"} height={"400px"}>
-          <h2>Grupos</h2>
-          <Button onClick={() => history.push("/groups")}>Ver Grupos</Button>
-        </Container>
+        <UserInfoContainer>
+          <Container
+            width={"250px"}
+            height={"400px"}
+            onClick={() => history.push("/habits")}
+          >
+            <h2>Hábitos</h2>
+          </Container>
+          <Container
+            width={"250px"}
+            height={"400px"}
+            onClick={() => history.push("/groups")}
+          >
+            <h2>Grupos</h2>
+          </Container>
+        </UserInfoContainer>
       </UserContainer>
       <UserFooter />
     </>
