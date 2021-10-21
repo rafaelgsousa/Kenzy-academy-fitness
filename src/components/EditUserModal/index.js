@@ -6,10 +6,9 @@ import { ButtonX } from "./../../components/ButtonX";
 import { FiX } from "react-icons/fi";
 import { useState } from "react/cjs/react.development";
 
-function EditUserModal({ setEditUserModal, editUser }) {
+function EditUserModal({ setEditUserModal, editUser, setUsername }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -29,25 +28,19 @@ function EditUserModal({ setEditUserModal, editUser }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Input
-              placeholder="Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
             <Button
               onClick={() => {
                 const editInfo = {};
-                if (name !== "") {
+                if (name) {
                   editInfo.username = name;
                 }
-                if (email !== "") {
+                if (email) {
                   editInfo.email = email;
                 }
-                if (password !== "") {
-                  editInfo.password = password;
-                }
 
-                editUser(editInfo);
+                console.log(editInfo);
+
+                editUser(editInfo, setUsername);
 
                 setEditUserModal(false);
               }}

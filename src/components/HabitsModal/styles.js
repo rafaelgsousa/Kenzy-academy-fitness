@@ -11,6 +11,7 @@ export const HabitsEditModal = styled.div`
   letter-spacing: 1.2px;
   font-weight: 300;
   z-index: 1;
+
   > div {
     margin: 0 1rem;
     display: flex;

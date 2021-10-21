@@ -3,23 +3,43 @@ import UserFooter from "../../components/UserFooter";
 import Container from "../../components/Container";
 import { HabitsContent, HabitsListContainer } from "./styles";
 import { Button } from "../../components/Button";
-import { useState } from "react/cjs/react.development";
-import HabitsEditModal from "../../components/HabitsEditModal";
+import { useEffect, useState } from "react/cjs/react.development";
+import HabitsModal from "../../components/HabitsModal";
+import EditHabitsModal from "../../components/EditHabitsModal";
 import { useContext } from "react";
 import { UserInfoContext } from "../../providers/UserInfo";
 import { Card } from "../../components/Card";
 import { ButtonX } from "../../components/ButtonX";
 import { FiX } from "react-icons/fi";
+import { useHistory } from "react-router";
 
 function Habits() {
+  const history = useHistory();
   const [habitsModal, setHabitsModal] = useState(false);
-  const { habitsList, deleteHabit } = useContext(UserInfoContext);
+  const [editHabitsModal, setEditHabitsModal] = useState(false);
+  const [habitId, setHabitId] = useState(0);
+  const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+  const { habitsList, deleteHabit, getHabitsList } =
+    useContext(UserInfoContext);
+
+  if (!token) {
+    history.push("/");
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => getHabitsList(), []);
 
   return (
     <>
       <UserHeader path={2} />
-      {habitsModal && <HabitsEditModal setHabitsModal={setHabitsModal} />}
       <HabitsContent>
+        {habitsModal && <HabitsModal setHabitsModal={setHabitsModal} />}
+        {editHabitsModal && (
+          <EditHabitsModal
+            setEditHabitsModal={setEditHabitsModal}
+            habitId={habitId}
+          />
+        )}
         <Container width={"80vw"} height={"70vh"}>
           <HabitsListContainer>
             {habitsList.map((elt, index) => {
@@ -33,10 +53,28 @@ function Habits() {
                 id,
               } = elt;
               return (
-                <Card key={index} width={"200px"} height={"200px"}>
-                  <ButtonX onClick={() => deleteHabit(id)}>
-                    <FiX />
-                  </ButtonX>
+                <Card
+                  key={index}
+                  width={"200px"}
+                  height={"200px"}
+                  position={
+                    habitsModal || editHabitsModal ? "static" : "relative"
+                  }
+                  onClick={() => {
+                    setEditHabitsModal(true);
+                    setHabitId(id);
+                  }}
+                >
+                  {!habitsModal && !editHabitsModal && (
+                    <ButtonX
+                      onClick={(e) => {
+                        deleteHabit(id);
+                        e.stopPropagation();
+                      }}
+                    >
+                      <FiX />
+                    </ButtonX>
+                  )}
                   <p>Título: {title}</p>
                   <p>Categoria: {category}</p>
                   <p>Dificuldade: {difficulty}</p>

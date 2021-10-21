@@ -26,7 +26,7 @@ export const Card = styled.div`
   justify-content: center;
   margin: ${(props) => props.margin || "12px"};
   cursor: pointer;
-  position: relative;
+  position: ${(props) => props.position || "relative"};
 
   &:hover {
     background: ${(props) => props.backgroundHover || "#ccc"};

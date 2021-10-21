@@ -11,6 +11,6 @@ export const HabitsContent = styled.div`
 
 export const HabitsListContainer = styled.div`
   > div {
-    position: static;
+    z-index: 0;
   }
 `;
