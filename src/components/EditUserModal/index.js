@@ -38,8 +38,6 @@ function EditUserModal({ setEditUserModal, editUser, setUsername }) {
                   editInfo.email = email;
                 }
 
-                console.log(editInfo);
-
                 editUser(editInfo, setUsername);
 
                 setEditUserModal(false);

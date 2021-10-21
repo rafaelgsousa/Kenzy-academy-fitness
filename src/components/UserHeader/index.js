@@ -43,9 +43,6 @@ function UserHeader({ path }) {
   if (path === 2) {
     return (
       <Header>
-        <Logo>
-          <img src={logoImg} alt="logo" />
-        </Logo>
         <NavBar />
         <GroupButton>
           <Button
@@ -63,20 +60,22 @@ function UserHeader({ path }) {
             width={"200px"}
             height={"50px"}
             onClick={() => {
-              localStorage.clear();
-              history.push("/");
+              history.push("/dashboard");
             }}
           >
-            Logout
+            Dashboard
           </Button>
           <Button
             cordefundo={"#007AFF"}
             textcolor={"#fff"}
             width={"200px"}
             height={"50px"}
-            onClick={() => history.push("/dashboard")}
+            onClick={() => {
+              localStorage.clear();
+              history.push("/");
+            }}
           >
-            Dashboard
+            Logout
           </Button>
         </GroupButton>
       </Header>
