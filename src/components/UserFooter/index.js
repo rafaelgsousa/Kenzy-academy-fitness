@@ -1,15 +1,14 @@
-import styled from "styled-components";
+import Footer from "./styles";
 
-//exemplo para chamar as props
-// <UserFooter width={"200px"}/>
-
-//as props sao apenas 3
-//sendo elas width, height e background-color
-
-const UserFooter = styled.div`
-  width: ${(props) => props.width || "100vw"};
-  height: ${(props) => props.height || "8.5vh"};
-  background-color: ${(props) => props.color || "#007AFF"};
-`;
+function UserFooter() {
+  return (
+    <Footer>
+      <p>
+        © Copyright 2021. Todos os direitos reservados. Kenzie Estrutura
+        Fitness.
+      </p>
+    </Footer>
+  );
+}
 
 export default UserFooter;
