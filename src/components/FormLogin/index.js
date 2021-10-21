@@ -1,7 +1,7 @@
 import { useHistory } from "react-router"
 import { useState } from "react"
 import axios from "axios"
-import toast from "react-hot-toast"
+import { toast } from 'react-toastify';
 import jwt_decode from "jwt-decode"
 import { Button } from "../Button"
 import logokenzie from "../../assets/img/logokenzie.png"
@@ -25,12 +25,11 @@ const FormLogin = () => {
     axios.post("https://kenzie-habits.herokuapp.com/sessions/", Login)
       .then((response) => {
         toast.success("Login Success")
-        console.log(response)
 
         const jwt = jwt_decode(response.data.access)
 
-        localStorage.setItem("@KAF_userId", jwt.user_id)
-        localStorage.setItem("@KAF_userToken", response.data.access)
+        localStorage.setItem("@KAF_userId", JSON.stringify(jwt.user_id))
+        localStorage.setItem("@KAF_userToken", JSON.stringify(response.data.access))
 
         history.push("/dashboard")
       })
@@ -39,7 +38,7 @@ const FormLogin = () => {
 
   const goTodash = () => {
 
-    const token = localStorage.getItem("@KAF_userToken");
+    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
     if (token) {
 

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import toast from "react-hot-toast"
+import { toast } from 'react-toastify';
 import { CadastroCss } from "../CadastroCss"
 import logokenzie from "../../assets/img/logokenzie.png"
 import { Button } from "../Button"
