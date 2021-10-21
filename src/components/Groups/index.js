@@ -25,15 +25,7 @@ export const GroupsComponent = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    // useEffect(() =>
-    //     getSubscription()
-    //     // eslint-disable-next-line
-    //     , [])
-
-    // useEffect(() =>
-    //     getGroupsForCategory(category)
-    //     // eslint-disable-next-line
-    //     , [category])
+    console.log(groupsOfCategory);
 
     useEffect(() => {
         getSubscription()
@@ -136,7 +128,7 @@ export const GroupsComponent = () => {
                             >Previous</Button>
                         }
                         <span style={{ margin: "1rem" }}>{numberPage}</span>
-                        {(numberPage < Math.ceil(groupsOfCategory.data.count / 15)) &&
+                        {((groupsOfCategory.data !== undefined) && (numberPage < Math.ceil(groupsOfCategory.data.count / 15))) &&
                             <Button
                                 onClick={handleAddPagination}
                             >Next</Button>
