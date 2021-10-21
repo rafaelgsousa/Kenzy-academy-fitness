@@ -229,7 +229,7 @@ const ModalGroup = () => {
                                 <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
                             </Container>
                             : showCreateActivite ?
-                                <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                                <Container width={"440px"} height={"700px"} >
                                     <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
                                     <h3>Criar Atividade</h3>
                                     <form onSubmit={handleSubmit(onCreateActives)}>
@@ -243,7 +243,7 @@ const ModalGroup = () => {
                                     </form>
                                 </Container>
                                 :
-                                <Container width={"440px"} height={"700px"} opacity={"0.7"}>
+                                <Container width={"440px"} height={"700px"} >
                                     <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
                                     <h3>Editar Atividade</h3>
                                     <form onSubmit={handleSubmit(onEditActivite)}>
