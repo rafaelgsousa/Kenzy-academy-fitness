@@ -19,9 +19,25 @@ export const HabitsEditModal = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+    max-width: 450px;
+    max-height: 350px;
+    > form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 70%;
+    }
   }
 `;
 
-export const GroupButton = styled.div``;
+export const GroupButton = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const CheckBoxLabel = styled.div``;
+export const CheckBoxLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

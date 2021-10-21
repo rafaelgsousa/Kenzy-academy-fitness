@@ -22,6 +22,7 @@ const Container = styled.div`
   height: ${(props) => props.height || "200px"};
   opacity: ${(props) => props.opacity || "1.0"};
   background-color: ${(props) => props.background || "rgba(0, 122, 255, 0.7)"};
+  background-image: ${(props) => `url(${props.img})`};
   /* display: flex;
   flex-direction: column;
   align-items: center; */

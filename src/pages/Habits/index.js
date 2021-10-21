@@ -1,7 +1,12 @@
 import UserHeader from "../../components/UserHeader";
 import UserFooter from "../../components/UserFooter";
 import Container from "../../components/Container";
-import { HabitsContent, HabitsListContainer } from "./styles";
+import {
+  HabitsContent,
+  HabitsListContainer,
+  MainContent,
+  ContainerContent,
+} from "./styles";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react/cjs/react.development";
 import HabitsModal from "../../components/HabitsModal";
@@ -30,7 +35,7 @@ function Habits() {
   useEffect(() => getHabitsList(), []);
 
   return (
-    <>
+    <MainContent>
       <UserHeader path={2} />
       <HabitsContent>
         {habitsModal && <HabitsModal setHabitsModal={setHabitsModal} />}
@@ -40,56 +45,58 @@ function Habits() {
             habitId={habitId}
           />
         )}
-        <Container width={"80vw"} height={"70vh"}>
-          <HabitsListContainer>
-            {habitsList.map((elt, index) => {
-              const {
-                achieved,
-                category,
-                difficulty,
-                frequency,
-                how_much_achieved,
-                title,
-                id,
-              } = elt;
-              return (
-                <Card
-                  key={index}
-                  width={"200px"}
-                  height={"200px"}
-                  position={
-                    habitsModal || editHabitsModal ? "static" : "relative"
-                  }
-                  onClick={() => {
-                    setEditHabitsModal(true);
-                    setHabitId(id);
-                  }}
-                >
-                  {!habitsModal && !editHabitsModal && (
-                    <ButtonX
-                      onClick={(e) => {
-                        deleteHabit(id);
-                        e.stopPropagation();
-                      }}
-                    >
-                      <FiX />
-                    </ButtonX>
-                  )}
-                  <p>Título: {title}</p>
-                  <p>Categoria: {category}</p>
-                  <p>Dificuldade: {difficulty}</p>
-                  <p>Frequência: {frequency}</p>
-                  <p>Alcançado: {achieved ? "Sim" : "Não"}</p>
-                  <p>Quantidade Alcançada: {how_much_achieved}</p>
-                </Card>
-              );
-            })}
-          </HabitsListContainer>
-          <Button onClick={() => setHabitsModal(true)}>Criar Hábito</Button>
-        </Container>
+        <ContainerContent>
+          <Container width={"80vw"} height={"70vh"}>
+            <HabitsListContainer>
+              {habitsList.map((elt, index) => {
+                const {
+                  achieved,
+                  category,
+                  difficulty,
+                  frequency,
+                  how_much_achieved,
+                  title,
+                  id,
+                } = elt;
+                return (
+                  <Card
+                    key={index}
+                    width={"200px"}
+                    height={"200px"}
+                    position={
+                      habitsModal || editHabitsModal ? "static" : "relative"
+                    }
+                    onClick={() => {
+                      setEditHabitsModal(true);
+                      setHabitId(id);
+                    }}
+                  >
+                    {!habitsModal && !editHabitsModal && (
+                      <ButtonX
+                        onClick={(e) => {
+                          deleteHabit(id);
+                          e.stopPropagation();
+                        }}
+                      >
+                        <FiX />
+                      </ButtonX>
+                    )}
+                    <p>{title}</p>
+                    <p>Categoria: {category}</p>
+                    <p>Dificuldade: {difficulty}</p>
+                    <p>Frequência: {frequency}</p>
+                    <p>Alcançado: {achieved ? "Sim" : "Não"}</p>
+                    <p>Quantidade: {how_much_achieved}</p>
+                  </Card>
+                );
+              })}
+            </HabitsListContainer>
+            <Button onClick={() => setHabitsModal(true)}>Criar Hábito</Button>
+          </Container>
+        </ContainerContent>
       </HabitsContent>
       <UserFooter />
-    </>
+    </MainContent>
   );
 }
 

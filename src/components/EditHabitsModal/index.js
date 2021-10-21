@@ -45,16 +45,16 @@ function EditHabitsModal({ setEditHabitsModal, habitId }) {
   return (
     <Blur>
       <HabitsEditModal>
-        <Container width={"50vw"} height={"60vh"} opacity={"1"}>
+        <Container width={"50vw"} height={"50vh"} opacity={"1"}>
+          <ButtonX onClick={() => setEditHabitsModal(false)}>
+            <FiX />
+          </ButtonX>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               onSubmitFunction();
             }}
           >
-            <ButtonX onClick={() => setEditHabitsModal(false)}>
-              <FiX />
-            </ButtonX>
             <Input
               placeholder="Título"
               value={title}

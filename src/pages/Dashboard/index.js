@@ -1,12 +1,15 @@
 import { useHistory } from "react-router";
 import Container from "../../components/Container";
 import { Button } from "../../components/Button";
-import { UserContainer, UserInfoContainer } from "./styles";
+import { UserContainer, UserInfoContainer, MainContent } from "./styles";
 import UserHeader from "../../components/UserHeader";
 import UserFooter from "../../components/UserFooter";
 import EditUserModal from "../../components/EditUserModal";
 import { useState, useContext, useEffect } from "react/cjs/react.development";
 import { UserInfoContext } from "../../providers/UserInfo";
+import habitsImg from "../../assets/img/habitsImage.jpg";
+import groupsImg from "../../assets/img/groupsImage.webp";
+import profileImg from "../../assets/img/profileImage.jpg";
 
 function Dashboard() {
   const { editUser, getHabitsList } = useContext(UserInfoContext);
@@ -24,7 +27,7 @@ function Dashboard() {
   }
 
   return (
-    <>
+    <MainContent>
       <UserHeader />
       {editUserModal && (
         <EditUserModal
@@ -34,29 +37,35 @@ function Dashboard() {
         />
       )}
       <UserContainer>
-        <Container height={"250px"}>
-          <h2>{username}</h2>
-          <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button>
-        </Container>
         <UserInfoContainer>
           <Container
-            width={"250px"}
-            height={"400px"}
+            width={"300px"}
+            height={"300px"}
             onClick={() => history.push("/habits")}
+            img={habitsImg}
           >
             <h2>Hábitos</h2>
           </Container>
+        </UserInfoContainer>
+
+        <Container img={profileImg}>
+          <h2>{username}</h2>
+          <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button>
+        </Container>
+
+        <UserInfoContainer>
           <Container
-            width={"250px"}
-            height={"400px"}
+            width={"300px"}
+            height={"300px"}
             onClick={() => history.push("/groups")}
+            img={groupsImg}
           >
             <h2>Grupos</h2>
           </Container>
         </UserInfoContainer>
       </UserContainer>
       <UserFooter />
-    </>
+    </MainContent>
   );
 }
 
