@@ -1,15 +1,87 @@
-import styled from "styled-components";
+import { Header, NavBar, Logo, GroupButton } from "./styles";
+import { Button } from "../Button";
+import { useHistory } from "react-router";
+import logoImg from "../../assets/img/logo.png";
 
-//exemplo para chamar as props
-// <UserHeader width={"200px"}/>
+function UserHeader({ path }) {
+  const history = useHistory();
 
-//as props sao apenas 3
-//sendo elas width, height e background-color
+  if (path === 1) {
+    return (
+      <Header>
+        <Logo>
+          <img src={logoImg} alt="logo" />
+        </Logo>
+        <NavBar />
+        <GroupButton>
+          <Button
+            cordefundo={"#007AFF"}
+            textcolor={"#fff"}
+            width={"200px"}
+            height={"50px"}
+            onClick={() => history.push("/")}
+          >
+            Home
+          </Button>
+          <Button
+            cordefundo={"#007AFF"}
+            textcolor={"#fff"}
+            width={"200px"}
+            height={"50px"}
+            onClick={() => {
+              localStorage.clear();
+              history.push("/");
+            }}
+          >
+            Logout
+          </Button>
+        </GroupButton>
+      </Header>
+    );
+  }
 
-const UserHeader = styled.div`
-  width: ${(props) => props.width || "100vw"};
-  height: ${(props) => props.height || "8.5vh"};
-  background-color: ${(props) => props.color || "#007AFF"};
-`;
+  if (path === 2) {
+    return (
+      <Header>
+        <Logo>
+          <img src={logoImg} alt="logo" />
+        </Logo>
+        <NavBar />
+        <GroupButton>
+          <Button
+            cordefundo={"#007AFF"}
+            textcolor={"#fff"}
+            width={"200px"}
+            height={"50px"}
+            onClick={() => history.push("/")}
+          >
+            Home
+          </Button>
+          <Button
+            cordefundo={"#007AFF"}
+            textcolor={"#fff"}
+            width={"200px"}
+            height={"50px"}
+            onClick={() => {
+              localStorage.clear();
+              history.push("/");
+            }}
+          >
+            Logout
+          </Button>
+          <Button
+            cordefundo={"#007AFF"}
+            textcolor={"#fff"}
+            width={"200px"}
+            height={"50px"}
+            onClick={() => history.push("/dashboard")}
+          >
+            Dashboard
+          </Button>
+        </GroupButton>
+      </Header>
+    );
+  }
+}
 
 export default UserHeader;

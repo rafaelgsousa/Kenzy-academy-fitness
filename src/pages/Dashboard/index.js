@@ -28,7 +28,7 @@ function Dashboard() {
 
   return (
     <MainContent>
-      <UserHeader />
+      <UserHeader path={1} />
       {editUserModal && (
         <EditUserModal
           setEditUserModal={setEditUserModal}
