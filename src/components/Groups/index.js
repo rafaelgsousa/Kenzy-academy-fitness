@@ -20,7 +20,7 @@ export const GroupsComponent = () => {
 
     const history = useHistory()
 
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState(null)
 
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
@@ -32,8 +32,9 @@ export const GroupsComponent = () => {
     }, [getSubscription])
 
     useEffect(() => {
-        (category.length !== 0) && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+        !!category && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
         getGroupsForCategory(`?page=${numberPage}`)
+        return (() => groupsOfCategory)
         // eslint-disable-next-line
     }, [!!category ? (category) : (groupsOfCategory)])
 
