@@ -131,17 +131,21 @@ export const GroupsComponent = () => {
                             </Card>
                         )}
                     </Content>
-                    <div>
-                        {numberPage !== 1 &&
+                    <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+                        {numberPage !== 1 ?
                             <Button
                                 onClick={handleSubPagination}
                             >Previous</Button>
+                            :
+                            <Button disabled>Previous</Button>
                         }
                         <span style={{ margin: "1rem" }}>{numberPage}</span>
-                        {((groupsOfCategory.data !== undefined) && (numberPage < Math.ceil(groupsOfCategory.data.count / 15))) &&
+                        {((groupsOfCategory.data !== undefined) && (numberPage < Math.ceil(groupsOfCategory.data.count / 15))) ?
                             <Button
                                 onClick={handleAddPagination}
                             >Next</Button>
+                            :
+                            <Button disabled>Previous</Button>
                         }
                     </div>
                 </Container>
