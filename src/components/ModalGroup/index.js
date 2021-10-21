@@ -32,22 +32,22 @@ const ModalGroup = () => {
 
     const { especificGroup, getEspecificGroup, updateGroup } = useContext(GroupsContext)
 
-    console.log(activitesOfGroup)
-
     useEffect(() =>
         getEspecificGroup(idgroup)
         // eslint-disable-next-line
         , [])
 
-    useEffect(() =>
+    useEffect(() => {
         getGroupActivities(idgroup)
+        return (() => getGroupActivities(idgroup))
         // eslint-disable-next-line
-        , [])
+    }, [activitesOfGroup])
 
-    useEffect(() =>
+    useEffect(() => {
         getGroupGoals(idgroup)
+        return (() => getGroupGoals(idgroup))
         // eslint-disable-next-line
-        , [])
+    }, [goalsGroup])
 
     const [showActivities, setShowActivities] = useState(false)
     const [showObjects, setShowObjects] = useState(false)
@@ -107,6 +107,7 @@ const ModalGroup = () => {
         const realization_time = `${time.split("-").reverse().join("-")}T00:00:00Z`;
         const group = Number(idgroup)
         createActivites({ title, realization_time, group })
+        showModalListActivites()
     }
 
     const onEditActivite = ({ title, time }) => {
@@ -131,7 +132,6 @@ const ModalGroup = () => {
 
     const onCreateGoal = (data) => {
         const group = Number(idgroup)
-        console.log({ ...data, group })
         createGoal({ ...data, group })
     }
 
@@ -165,7 +165,6 @@ const ModalGroup = () => {
     }
 
     const onDeleteGoal = () => {
-        console.log("id", idGoal)
         deleteGoal(idGoal)
     }
 
@@ -208,24 +207,25 @@ const ModalGroup = () => {
                             <Container width={"440px"} height={"700px"}>
                                 <ButtonX onClick={handleShowActivities}><FiX /></ButtonX>
                                 <h3>Atividades</h3>
-
-                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
-                                    .map((activite) =>
-                                        <Card key={activite.id} >
-                                            {console.log("id no card", activite.id)}
-                                            <ButtonX onClick={() => {
-                                                setIdActivite(activite.id)
-                                                onDeleteactivite()
-                                            }}><FiX /></ButtonX>
-                                            <div onClick={() => {
-                                                setIdActivite(activite.id)
-                                                showModalEditActivite()
-                                            }}>
-                                                <TextCard>{activite.title}</TextCard>
-                                                <TextCard>{activite.realization_time}</TextCard>
-                                            </div>
-                                        </Card>
-                                    )}
+                                <div style={{ overflow: "auto", height: "550px", display: "flex", flexDirection: "column" }}>
+                                    {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
+                                        .map((activite) =>
+                                            <Card key={activite.id} >
+                                                {console.log("id no card", activite.id)}
+                                                <ButtonX onClick={() => {
+                                                    setIdActivite(activite.id)
+                                                    onDeleteactivite()
+                                                }}><FiX /></ButtonX>
+                                                <div onClick={() => {
+                                                    setIdActivite(activite.id)
+                                                    showModalEditActivite()
+                                                }}>
+                                                    <TextCard>{activite.title}</TextCard>
+                                                    <TextCard>{activite.realization_time}</TextCard>
+                                                </div>
+                                            </Card>
+                                        )}
+                                </div>
                                 <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
                             </Container>
                             : showCreateActivite ?
@@ -294,28 +294,29 @@ const ModalGroup = () => {
                 }
                 {showObjects &&
                     <>
-                        {console.log("metas", goalsGroup)}
                         {showListGoals ?
                             <Container width={"440px"} height={"700px"}>
                                 <ButtonX onClick={handleShowObjects}><FiX /></ButtonX>
                                 <h3>Objetivos</h3>
-                                {(goalsGroup.data !== undefined) && goalsGroup.data.results
-                                    .map((goal, index) =>
-                                        <Card key={index} >
-                                            <ButtonX onClick={() => {
-                                                setIdGoal(goal.id)
-                                                onDeleteGoal()
-                                            }}><FiX /></ButtonX>
-                                            <div onClick={() => {
-                                                setIdGoal(goal.id)
-                                                showModalEditGoal()
-                                            }}>
-                                                <TextCard>{goal.title}</TextCard>
-                                                <TextCard>{goal.difficulty}</TextCard>
-                                                <TextCard>{goal.how_much_achieved}</TextCard>
-                                            </div>
-                                        </Card>
-                                    )}
+                                <div style={{ overflow: "auto", height: "550px", display: "flex", flexDirection: "column" }}>
+                                    {(goalsGroup.data !== undefined) && goalsGroup.data.results
+                                        .map((goal, index) =>
+                                            <Card key={index} >
+                                                <ButtonX onClick={() => {
+                                                    setIdGoal(goal.id)
+                                                    onDeleteGoal()
+                                                }}><FiX /></ButtonX>
+                                                <div onClick={() => {
+                                                    setIdGoal(goal.id)
+                                                    showModalEditGoal()
+                                                }}>
+                                                    <TextCard>{goal.title}</TextCard>
+                                                    <TextCard>{goal.difficulty}</TextCard>
+                                                    <TextCard>{goal.how_much_achieved}</TextCard>
+                                                </div>
+                                            </Card>
+                                        )}
+                                </div>
                                 <Button onClick={showModalCreateGoal}>Criar Objetivos</Button>
                             </Container>
                             : showCreateGoal ?

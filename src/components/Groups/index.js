@@ -72,7 +72,10 @@ export const GroupsComponent = () => {
                     <Container width={"600px"} height={"760px"}>
                         <h2>Criar Grupo</h2>
                         <Form onSubmit={handleSubmit(onCreateCategory)}>
-                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => setShowCreateGroup(false)} ><FiX /></ButtonX>
+                            <ButtonX style={{ fontSize: "1rem" }} onClick={() => {
+                                setShowCreateGroup(false)
+                                getSubscription()
+                            }} ><FiX /></ButtonX>
                             <Input placeholder="Nome do grupo" {...register("name")} width={"400px"} height={"50px"} />
                             <Input placeholder="Descrição" {...register("description")} width={"400px"} height={"50px"} />
                             <Input placeholder="Categoria" {...register("category")} width={"400px"} height={"50px"} />
@@ -129,7 +132,7 @@ export const GroupsComponent = () => {
                                 <TextCard onClick={() => history.push(`/modalgroups/${groups.id}`)}>{groups.name}</TextCard>
                                 <ButtonX
                                     onClick={
-                                        ()=>onSubscribToAGroup(groups.id)                                        
+                                        () => onSubscribToAGroup(groups.id)
                                     }><FiPlus /></ButtonX>
                             </Card>
                         )}
