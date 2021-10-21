@@ -41,7 +41,7 @@ function HabitsModal({ setHabitsModal }) {
   return (
     <Blur>
       <HabitsEditModal>
-        <Container width={"50vw"} height={"60vh"} opacity={"1"}>
+        <Container width={"50vw"} height={"50vh"} opacity={"1"}>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <ButtonX onClick={() => setHabitsModal(false)}>
               <FiX />
@@ -51,10 +51,14 @@ function HabitsModal({ setHabitsModal }) {
             <Input placeholder="Categoria" {...register("category")} />
             {errors.category?.message}
             <GroupButton>
-              <Input placeholder="Dificuldade" {...register("difficulty")} />
-              {errors.difficulty?.message}
-              <Input placeholder="Frequência" {...register("frequency")} />
-              {errors.frequency?.message}
+              <CheckBoxLabel>
+                <Input placeholder="Dificuldade" {...register("difficulty")} />
+                {errors.difficulty?.message}
+              </CheckBoxLabel>
+              <CheckBoxLabel>
+                <Input placeholder="Frequência" {...register("frequency")} />
+                {errors.frequency?.message}
+              </CheckBoxLabel>
             </GroupButton>
             <GroupButton>
               <CheckBoxLabel>
@@ -64,12 +68,14 @@ function HabitsModal({ setHabitsModal }) {
                   onChange={(_) => setAchieved(!achieved)}
                 />
               </CheckBoxLabel>
-              <Input
-                placeholder="Quantidade Alcançada"
-                type="number"
-                {...register("how_much_achieved")}
-              />
-              {errors.how_much_achieved?.message}
+              <CheckBoxLabel>
+                <Input
+                  placeholder="Quantidade Alcançada"
+                  type="number"
+                  {...register("how_much_achieved")}
+                />
+                {errors.how_much_achieved?.message}
+              </CheckBoxLabel>
             </GroupButton>
             <Button type="submit">Criar</Button>
           </form>

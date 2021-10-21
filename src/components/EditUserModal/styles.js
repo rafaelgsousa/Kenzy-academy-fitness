@@ -29,5 +29,7 @@ export const UserEditModal = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+    max-width: 300px;
+    max-height: 300px;
   }
 `;
