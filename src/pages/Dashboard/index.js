@@ -12,15 +12,17 @@ import groupsImg from "../../assets/img/groupsImage.webp";
 import profileImg from "../../assets/img/profileImage.jpg";
 
 function Dashboard() {
-  const { editUser, getHabitsList } = useContext(UserInfoContext);
+  const [editUserModal, setEditUserModal] = useState(false);
+  const [name, setName] = useState("");
+  const { editUser, getHabitsList, getUser } = useContext(UserInfoContext);
   const history = useHistory();
   const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
-  const name = localStorage.getItem("@KAF_userName");
-  const [editUserModal, setEditUserModal] = useState(false);
-  const [username, setUsername] = useState(name);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getHabitsList(), []);
+  useEffect(() => {
+    getHabitsList();
+    getUser(setName);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!token) {
     history.push("/");
@@ -33,7 +35,6 @@ function Dashboard() {
         <EditUserModal
           setEditUserModal={setEditUserModal}
           editUser={editUser}
-          setUsername={setUsername}
         />
       )}
       <UserContainer>
@@ -49,7 +50,7 @@ function Dashboard() {
         </UserInfoContainer>
 
         <Container img={profileImg}>
-          <h2>{username}</h2>
+          <h2>{name}</h2>
           <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button>
         </Container>
 

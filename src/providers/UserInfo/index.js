@@ -1,14 +1,14 @@
 import { createContext } from "react";
-import { toast } from "react-toastify";
 import axios from "axios";
 import { useState } from "react/cjs/react.development";
+import { toast } from "react-toastify";
 
 export const UserInfoContext = createContext();
 
 export const UserInfoProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
 
-  const editUser = (user, userFunction) => {
+  const editUser = (user) => {
     const id = JSON.parse(localStorage.getItem("@KAF_userId"));
     const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
@@ -19,10 +19,11 @@ export const UserInfoProvider = ({ children }) => {
         },
       })
       .then((resp) => {
-        userFunction(resp.data.username);
+        localStorage.setItem("@KAF_userName", resp.data.username);
+        document.location.reload();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((_) => {
+        toast.error("Username or Email already taken!");
       });
   };
 
@@ -45,10 +46,9 @@ export const UserInfoProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
+      .then((_) => {
         document.location.reload();
-      })
-      .catch((err) => console.log(err));
+      });
   };
 
   const deleteHabit = (id) => {
@@ -59,8 +59,7 @@ export const UserInfoProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((_) => document.location.reload())
-      .catch((err) => console.log(err));
+      .then((_) => document.location.reload());
   };
 
   const editHabit = (id, habit) => {
@@ -71,8 +70,15 @@ export const UserInfoProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((rsp) => document.location.reload())
-      .catch((err) => console.log(err));
+      .then((_) => document.location.reload());
+  };
+
+  const getUser = (setName) => {
+    const id = JSON.parse(localStorage.getItem("@KAF_userId"));
+
+    axios
+      .get(`https://kenzie-habits.herokuapp.com/users/${id}/`)
+      .then((rsp) => setName(rsp.data.username));
   };
 
   return (
@@ -84,6 +90,7 @@ export const UserInfoProvider = ({ children }) => {
         deleteHabit,
         getHabitsList,
         editHabit,
+        getUser,
       }}
     >
       {children}

@@ -27,7 +27,7 @@ export const GroupButton = styled.div`
   justify-content: space-evenly;
   width: 50vw;
   right: 0;
-  top: 6vh;
+  top: 4vh;
 `;
 
 export const Logo = styled.div`
