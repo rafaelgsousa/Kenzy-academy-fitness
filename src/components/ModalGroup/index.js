@@ -208,24 +208,25 @@ const ModalGroup = () => {
                             <Container width={"440px"} height={"700px"}>
                                 <ButtonX onClick={handleShowActivities}><FiX /></ButtonX>
                                 <h3>Atividades</h3>
-
-                                {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
-                                    .map((activite) =>
-                                        <Card key={activite.id} >
-                                            {console.log("id no card", activite.id)}
-                                            <ButtonX onClick={() => {
-                                                setIdActivite(activite.id)
-                                                onDeleteactivite()
-                                            }}><FiX /></ButtonX>
-                                            <div onClick={() => {
-                                                setIdActivite(activite.id)
-                                                showModalEditActivite()
-                                            }}>
-                                                <TextCard>{activite.title}</TextCard>
-                                                <TextCard>{activite.realization_time}</TextCard>
-                                            </div>
-                                        </Card>
-                                    )}
+                                <div style={{ overflow: "auto", height: "500px", display: "flex", flexDirection: "column" }}>
+                                    {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
+                                        .map((activite) =>
+                                            <Card key={activite.id} >
+                                                {console.log("id no card", activite.id)}
+                                                <ButtonX onClick={() => {
+                                                    setIdActivite(activite.id)
+                                                    onDeleteactivite()
+                                                }}><FiX /></ButtonX>
+                                                <div onClick={() => {
+                                                    setIdActivite(activite.id)
+                                                    showModalEditActivite()
+                                                }}>
+                                                    <TextCard>{activite.title}</TextCard>
+                                                    <TextCard>{activite.realization_time}</TextCard>
+                                                </div>
+                                            </Card>
+                                        )}
+                                </div>
                                 <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
                             </Container>
                             : showCreateActivite ?
@@ -296,26 +297,28 @@ const ModalGroup = () => {
                     <>
                         {console.log("metas", goalsGroup)}
                         {showListGoals ?
-                            <Container width={"440px"} height={"700px"}>
+                            <Container width={"440px"} height={"700px"} >
                                 <ButtonX onClick={handleShowObjects}><FiX /></ButtonX>
                                 <h3>Objetivos</h3>
-                                {(goalsGroup.data !== undefined) && goalsGroup.data.results
-                                    .map((goal, index) =>
-                                        <Card key={index} >
-                                            <ButtonX onClick={() => {
-                                                setIdGoal(goal.id)
-                                                onDeleteGoal()
-                                            }}><FiX /></ButtonX>
-                                            <div onClick={() => {
-                                                setIdGoal(goal.id)
-                                                showModalEditGoal()
-                                            }}>
-                                                <TextCard>{goal.title}</TextCard>
-                                                <TextCard>{goal.difficulty}</TextCard>
-                                                <TextCard>{goal.how_much_achieved}</TextCard>
-                                            </div>
-                                        </Card>
-                                    )}
+                                <div style={{ overflow: "auto", height: "500px", display: "flex", flexDirection: "column" }}>
+                                    {(goalsGroup.data !== undefined) && goalsGroup.data.results
+                                        .map((goal, index) =>
+                                            <Card key={index} >
+                                                <ButtonX onClick={() => {
+                                                    setIdGoal(goal.id)
+                                                    onDeleteGoal()
+                                                }}><FiX /></ButtonX>
+                                                <div onClick={() => {
+                                                    setIdGoal(goal.id)
+                                                    showModalEditGoal()
+                                                }}>
+                                                    <TextCard>{goal.title}</TextCard>
+                                                    <TextCard>{goal.difficulty}</TextCard>
+                                                    <TextCard>{goal.how_much_achieved}</TextCard>
+                                                </div>
+                                            </Card>
+                                        )}
+                                </div>
                                 <Button onClick={showModalCreateGoal}>Criar Objetivos</Button>
                             </Container>
                             : showCreateGoal ?
@@ -360,7 +363,7 @@ const ModalGroup = () => {
                     </>
                 }
             </Content>
-        </Box>
+        </Box >
     )
 }
 

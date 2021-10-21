@@ -126,6 +126,7 @@ export const GroupsComponent = () => {
                                     onClick={
                                         (e) => {
                                             e.stopPropagation()
+                                            subscribToAGroup(groups.id)
                                         }
                                     }><FiPlus /></ButtonX>
                             </Card>
