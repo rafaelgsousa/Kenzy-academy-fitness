@@ -32,11 +32,10 @@ export const GroupsComponent = () => {
     }, [getSubscription])
 
     useEffect(() => {
-        !!category && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+        (category.length !== 0) && getGroupsForCategory(`?category=${category}&page=${numberPage}`)
         getGroupsForCategory(`?page=${numberPage}`)
-        return (() => groupsOfCategory)
         // eslint-disable-next-line
-    }, [category, groupsOfCategory])
+    }, [!!category ? (category) : (groupsOfCategory)])
 
     const onCreateCategory = (data) => createGroup(data)
 
