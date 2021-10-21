@@ -16,6 +16,8 @@ export const GroupsComponent = () => {
 
     const [showCreateGroup, setShowCreateGroup] = useState(false)
 
+    const [numberPage, setNumberPage] = useState(1)
+
     const history = useHistory()
 
     const [category, setCategory] = useState("")
@@ -23,18 +25,38 @@ export const GroupsComponent = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    useEffect(() =>
+    // useEffect(() =>
+    //     getSubscription()
+    //     // eslint-disable-next-line
+    //     , [])
+
+    // useEffect(() =>
+    //     getGroupsForCategory(category)
+    //     // eslint-disable-next-line
+    //     , [category])
+
+    useEffect(() => {
         getSubscription()
+        return (() => getSubscription())
         // eslint-disable-next-line
-        , [])
+    }, [])
 
-    useEffect(() =>
-        getGroupsForCategory(category)
+    const loadGroupsForCategory = () => {
+        getGroupsForCategory(`?category=${category}&page=${numberPage}`)
+    }
+
+    useEffect(() => {
+        loadGroupsForCategory()
+        return (() => {
+            getGroupsForCategory([])
+        })
         // eslint-disable-next-line
-        , [category])
+    }, [])
 
-    const onCreateCategory = (data) => createGroup(data)
-
+    const onCreateCategory = (data) => {
+        createGroup(data)
+        getSubscription()
+    }
     return (
         <>
             <Box>
@@ -53,7 +75,7 @@ export const GroupsComponent = () => {
                     :
                     <Container width={"600px"} height={"760px"}>
                         <h2>Meu Grupos</h2>
-                        <Content>
+                        <Content style={{ overflow: "auto", height: "450px" }}>
                             {
                                 (subscriptions.data !== undefined) && subscriptions.data.map((group, index) =>
                                     <Card
@@ -67,6 +89,7 @@ export const GroupsComponent = () => {
                                                 (e) => {
                                                     e.stopPropagation()
                                                     deleteGroup(group.id, access)
+                                                    getSubscription()
                                                 }
                                             }><FiX /></ButtonX>
                                         <TextCard>{group.name}</TextCard>
