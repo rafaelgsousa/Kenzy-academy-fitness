@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { FiPlus, FiX } from "react-icons/fi";
 
 export const GroupsComponent = () => {
-    console.log("loop")
+
     const { register, handleSubmit } = useForm()
 
     const [showCreateGroup, setShowCreateGroup] = useState(false)
@@ -49,7 +49,7 @@ export const GroupsComponent = () => {
     }
 
     const handleAddPagination = () => {
-        setNumberPage(numberPage + 1)
+        if (numberPage < Math.ceil(groupsOfCategory.data.count / 15)) setNumberPage(numberPage + 1)
         loadGroupsForCategory()
     }
 
@@ -140,9 +140,11 @@ export const GroupsComponent = () => {
                             >Previous</Button>
                         }
                         <span style={{ margin: "1rem" }}>{numberPage}</span>
-                        <Button
-                            onClick={handleAddPagination}
-                        >Next</Button>
+                        {(numberPage < Math.ceil(groupsOfCategory.data.count / 15)) &&
+                            <Button
+                                onClick={handleAddPagination}
+                            >Next</Button>
+                        }
                     </div>
                 </Container>
             </Box>
