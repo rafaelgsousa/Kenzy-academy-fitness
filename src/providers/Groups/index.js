@@ -15,7 +15,7 @@ export const GroupsProvider = ({ children }) => {
 
     const history = useHistory()
 
-    const access = localStorage.getItem("@KAF_userToken") || ""
+    const access = JSON.parse(localStorage.getItem("@KAF_userToken")) || ""
 
     const createGroup = (data) => {
         axios.post("https://kenzie-habits.herokuapp.com/groups/", data,
