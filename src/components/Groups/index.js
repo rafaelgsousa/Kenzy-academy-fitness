@@ -135,14 +135,14 @@ export const GroupsComponent = () => {
                     </Content>
                     <div>
                         {numberPage !== 1 &&
-                            <button
+                            <Button
                                 onClick={handleSubPagination}
-                            >Previous</button>
+                            >Previous</Button>
                         }
-                        {numberPage}
-                        <button
+                        <span style={{ margin: "1rem" }}>{numberPage}</span>
+                        <Button
                             onClick={handleAddPagination}
-                        >Next</button>
+                        >Next</Button>
                     </div>
                 </Container>
             </Box>
