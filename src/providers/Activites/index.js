@@ -12,9 +12,7 @@ export const ActivitesProvider = ({children}) => {
 
     const access = localStorage.getItem("@KAF_userToken") || ""
 
-    const createActivites = ({title,realization_time,idgroup}) => {
-
-        const data = {title,realization_time,idgroup}
+    const createActivites = (data) => {
 
         axios.post("https://kenzie-habits.herokuapp.com/activities/",data,
         {

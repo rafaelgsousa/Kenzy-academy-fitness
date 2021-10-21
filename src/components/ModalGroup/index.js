@@ -22,11 +22,11 @@ const [idgroup] = useState(params.id);
 
 const history = useHistory()
 
-const { activitesOfGroup, getGroupActivities, createActivites, updateActivity } = useContext(ActivitesContext)
+const { activitesOfGroup, getGroupActivities, createActivites, updateActivity, deleteActivity } = useContext(ActivitesContext)
 
 const [idActivite,setIdActivite] = useState(null)
 
-const { goalsGroup, getGroupGoals, createGoal, updateGoal } = useContext(GoalsContext)
+const { goalsGroup, getGroupGoals, createGoal, updateGoal, deleteGoal } = useContext(GoalsContext)
 
 const [idGoal,setIdGoal] = useState(null)
 
@@ -101,12 +101,101 @@ setShowEditGoal(false)
 
 const [showDescriptionGroup,setShowDescriptionGroup] = useState(true)
 
-const onCreateActives = (data) =>{
-    createActivites(data,idgroup)
+//Funções para criar, editar e deletar atividades
+
+const onCreateActives = ({title,time}) =>{
+    const realization_time = `${time.split("-").reverse().join("-")}T00:00:00Z`;
+    const group = Number(idgroup)
+    createActivites({title,realization_time,group})
 }
 
-const onEditActivite = (data) =>{
-    updateActivity(data)
+const onEditActivite = ({title,time}) =>{
+    const realization_time = `${time.split("-").reverse().join("-")}T00:00:00Z`;
+    
+    if(title === "") {
+        updateActivity({realization_time},idActivite)
+    }
+    if(time === "") {
+        updateActivity({title},idActivite)
+    }
+    if((title !== "") && (time !== "")){
+        updateActivity({title,realization_time},idActivite)
+    }
+}
+
+const onDeleteactivite = () => {
+    deleteActivity(idActivite)
+}
+
+//Funções para criar, editar e deletar metas
+
+const onCreateGoal = (data) => {
+    const group = Number(idgroup)
+    console.log({...data,group})
+    createGoal({...data,group})
+}
+
+const onUpdateGoal = ({title,difficulty,how_much_achieved,achieved}) => {
+    const id = Number(idGoal)
+    console.log("editar",{title,difficulty,how_much_achieved,achieved},id)
+    if(title === "" && difficulty === "" && how_much_achieved === "" ){
+        updateGoal({achieved},id)
+    }
+    else if(title === "" && difficulty === "") {
+        updateGoal({how_much_achieved,achieved},id)
+    }
+    else if(title === "" && how_much_achieved === "") {
+        updateGoal({difficulty,achieved},id)
+    }
+    else if(how_much_achieved === "" && difficulty === ""){
+        updateGoal({title,achieved},id)
+    }
+    else if(title === ""){
+        updateGoal({difficulty,how_much_achieved,achieved},id)
+    }
+    else if(difficulty === ""){
+        updateGoal({title,how_much_achieved,achieved},id)
+    }
+    else if(how_much_achieved === ""){
+        updateGoal({title,difficulty,achieved},id)
+    } else {
+    updateGoal({title,difficulty,how_much_achieved,achieved},id)
+    }
+
+}
+
+const onDeleteGoal = () => {
+    console.log("id",idGoal)
+    deleteGoal(idGoal)
+}
+
+
+//Funções de Grupo
+
+const onUpdateGroup = ({name,description,category}) =>{
+    const id = idgroup
+    console.log("editar grupos",{name,description,category},id)
+    if(description==="" && category===""){
+        updateGroup({name},id)
+    }
+    else if (name==="" && category===""){
+        updateGroup({description},id)
+    } 
+    else if (name==="" && description ===""){
+        updateGroup({category},id)
+    }
+    else if (category===""){
+        updateGroup({name,description},id)
+    }
+    else if(description===""){
+        updateGroup({name,category},id)
+    } 
+    else if(name===""){
+        updateGroup({description,category},id)
+    }
+    else {
+        updateGroup({name,description,category},id)
+    }
 }
 
 return (
@@ -122,13 +211,19 @@ return (
 
                             {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
                             .map((activite) =>
-                                <Card key={activite.id} onClick={()=>{
+                                <Card key={activite.id} >
+                                    {console.log("id no card",activite.id)}
+                                <ButtonX onClick={()=>{
                                     setIdActivite(activite.id)
-                                    return showModalEditActivite()
+                                    onDeleteactivite()
+                                }}><FiX /></ButtonX>
+                                <div onClick={()=>{
+                                    setIdActivite(activite.id)
+                                    showModalEditActivite()
                                 }}>
-                                <ButtonX><FiX /></ButtonX>
                                 <TextCard>{activite.title}</TextCard>
                                 <TextCard>{activite.realization_time}</TextCard>
+                                </div>
                                 </Card>
                             )}
                             <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
@@ -142,7 +237,7 @@ return (
                                 <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"}/>
                                 </Card>
                                 <Card width={"295px"} height={"75px"}>
-                                <Input {...register("realization_time")} placeholder="Data para realizar" width={"100%"} height={"100%"}/>
+                                <Input {...register("time")} placeholder="dia-mês-ano" width={"100%"} height={"100%"}/>
                                 </Card>
                                 <Button width={"235px"} height={"75px"} type="submit">Criar</Button>
                             </form>
@@ -151,12 +246,12 @@ return (
                         <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                             <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
                             <h3>Editar Atividade</h3>
-                            <form onSubmit={handleSubmit(updateActivity)}>
+                            <form onSubmit={handleSubmit(onEditActivite)}>
                                 <Card width={"295px"} height={"75px"}>
                                     <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"}/>
                                 </Card>
                                 <Card width={"295px"} height={"75px"}>
-                                    <Input {...register("realization_time")} placeholder="Data para realizar" width={"100%"} height={"100%"}/>
+                                    <Input {...register("time")} placeholder="dia-mês-ano" width={"100%"} height={"100%"}/>
                                 </Card>
                                 <Button width={"235px"} height={"75px"} type="submit">Editar</Button>
                             </form>
@@ -182,7 +277,7 @@ return (
                     <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={() => setShowDescriptionGroup(true)}><FiX /></ButtonX>
                         <h2>Editar Grupo</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit(onUpdateGroup)}>
                             <Card width={"295px"} height={"75px"}>
                                 <Input {...register("name")} placeholder="Nome" width={"100%"} height={"100%"}/>
                             </Card>
@@ -190,7 +285,7 @@ return (
                                 <Input {...register("description")} placeholder="Descrição" width={"100%"} height={"100%"}/>
                             </Card>
                             <Card width={"295px"} height={"75px"}>
-                                <Input {...register("category")} placeholder="Categória" width={"100%"} height={"100%"}/>
+                                <Input {...register("category")} placeholder="Categoria" width={"100%"} height={"100%"}/>
                             </Card>
                         </form>
                         <Button width={"235px"} height={"75px"} type="submit">Editar Grupo</Button>
@@ -198,17 +293,26 @@ return (
                 }
                 {showObjects &&
                     <>
+                    {console.log("metas",goalsGroup)}
                     { showListGoals ?
                     <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={handleShowObjects}><FiX /></ButtonX>
                         <h3>Objetivos</h3>
                         {(goalsGroup.data !== undefined) && goalsGroup.data.results
                         .map((goal, index) =>
-                            <Card key={index} onClick={showModalEditGoal}>
-                            <ButtonX><FiX /></ButtonX>
-                            <TextCard>{goal.title}</TextCard>
-                            <TextCard>{goal.difficulty}</TextCard>
-                            <TextCard>{goal.how_much_achieved}</TextCard>
+                            <Card key={index} >
+                            <ButtonX onClick={()=>{
+                                setIdGoal(goal.id)
+                                onDeleteGoal()
+                            }}><FiX /></ButtonX>
+                            <div onClick={()=>{
+                                setIdGoal(goal.id)
+                                showModalEditGoal()
+                                }}>
+                                <TextCard>{goal.title}</TextCard>
+                                <TextCard>{goal.difficulty}</TextCard>
+                                <TextCard>{goal.how_much_achieved}</TextCard>
+                            </div>
                             </Card>
                         )}
                         <Button onClick={showModalCreateGoal}>Criar Objetivos</Button>
@@ -217,7 +321,7 @@ return (
                     <Container width={"440px"} height={"700px"} opacity={"0.7"}>
                     <ButtonX onClick={showModalListGoal}><FiX /></ButtonX>
                         <h3>Criar Objetivos</h3>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit(onCreateGoal)}>
                             <Card width={"295px"} height={"75px"}>
                             <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
                             </Card>
@@ -234,7 +338,7 @@ return (
                     <Container width={"440px"} height={"700px"}>
                         <ButtonX onClick={showModalListGoal}><FiX /></ButtonX>
                         <h3>EditarObjetivos</h3>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit(onUpdateGoal)}>
                             <Card width={"295px"} height={"75px"}>
                             <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
                             </Card>
