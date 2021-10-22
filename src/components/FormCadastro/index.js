@@ -35,9 +35,9 @@ const FormCadastro = () => {
             })
             .catch((err) => toast.error("Usuário não registrado"))
     }
+    const token = localStorage.getItem("@KAF_userToken");
     const goTodash = () => {
 
-        const token = localStorage.getItem("@KAF_userToken");
 
         if (token) {
 
@@ -71,9 +71,8 @@ const FormCadastro = () => {
                         <nav onClick={() => history.push("/login")} className="login">Login</nav>
                     </div>
                     <div className="buttons">
-                        <Button>Quem Somos</Button>
-                        <Button>Planos</Button>
-                        <Button onClick={goTodash}>Dashboard</Button>
+                    <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
+                    {token && <Button onClick={goTodash}>Dashboard</Button>}
                     </div>
                 </header>
                 <div className="container">

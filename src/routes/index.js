@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import HomePage from "../pages/HomePage";
 import { Groups } from "../pages/Groups";
 import {ModalGroups} from "../pages/modalGroups"
+import QuemSomosPage from "../pages/QuemSomosPage";
 
 function Routes() {
   return (
@@ -13,6 +14,9 @@ function Routes() {
       <Route exact path="/">
         <HomePage />
       </Route>
+      <Route path="/quemSomos">
+          <QuemSomosPage/>
+        </Route>
       <Route path="/signUp">
         <Cadastro />
       </Route>
