@@ -124,9 +124,6 @@ const ModalGroup = () => {
         }
     }
 
-    const onDeleteactivite = () => {
-        deleteActivity(idActivite)
-    }
 
     //Funções para criar, editar e deletar metas
 
@@ -163,11 +160,6 @@ const ModalGroup = () => {
         }
 
     }
-
-    const onDeleteGoal = () => {
-        deleteGoal(idGoal)
-    }
-
 
     //Funções de Grupo
 
@@ -214,7 +206,7 @@ const ModalGroup = () => {
                                                 {console.log("id no card", activite.id)}
                                                 <ButtonX onClick={() => {
                                                     setIdActivite(activite.id)
-                                                    onDeleteactivite()
+                                                    deleteActivity(activite.id)
                                                 }}><FiX /></ButtonX>
                                                 <div onClick={() => {
                                                     setIdActivite(activite.id)
@@ -227,7 +219,7 @@ const ModalGroup = () => {
                                         )}
                                 </div>
                                 <Button onClick={showModalCreateActivite}>Criar Atividades</Button>
-                            </Container>
+                            </Container >
                             : showCreateActivite ?
                                 <Container width={"440px"} height={"700px"} >
                                     <ButtonX onClick={showModalListActivites}><FiX /></ButtonX>
@@ -259,40 +251,42 @@ const ModalGroup = () => {
                         }
                     </>
                 }
-                {showDescriptionGroup ?
-                    <Container width={"670px"} height={"700px"}>
-                        <ButtonX onClick={() => history.push('/groups')}><FiX /></ButtonX>
-                        <h2>{(especificGroup.data !== undefined) && especificGroup.data.name}</h2>
-                        <h3>{(especificGroup.data !== undefined) && especificGroup.data.category}</h3>
-                        <Card width={"550px"} height={"300px"}>
-                            <TextCard>{(especificGroup.data !== undefined) && especificGroup.data.description}</TextCard>
-                        </Card>
-                        <GroupButton>
-                            <Button width={"250px"} height={"50px"} onClick={handleShowActivities}>Atividades</Button>
-                            <Button width={"250px"} height={"50px"} onClick={handleShowObjects}>Objetivos</Button>
-                        </GroupButton>
-                        <Button width={"250px"} height={"50px"} onClick={() => setShowDescriptionGroup(false)} >Editar Grupo</Button>
-                    </Container>
-                    :
-                    <Container width={"440px"} height={"700px"}>
-                        <ButtonX onClick={() => setShowDescriptionGroup(true)}><FiX /></ButtonX>
-                        <h2>Editar Grupo</h2>
-                        <form onSubmit={handleSubmit(onUpdateGroup)}>
-                            <Card width={"295px"} height={"75px"}>
-                                <Input {...register("name")} placeholder="Nome" width={"100%"} height={"100%"} />
+                {
+                    showDescriptionGroup ?
+                        <Container width={"670px"} height={"700px"}>
+                            <ButtonX onClick={() => history.push('/groups')}><FiX /></ButtonX>
+                            <h2>{(especificGroup.data !== undefined) && especificGroup.data.name}</h2>
+                            <h3>{(especificGroup.data !== undefined) && especificGroup.data.category}</h3>
+                            <Card width={"550px"} height={"300px"}>
+                                <TextCard>{(especificGroup.data !== undefined) && especificGroup.data.description}</TextCard>
                             </Card>
-                            <Card width={"295px"} height={"75px"}>
-                                <Input {...register("description")} placeholder="Descrição" width={"100%"} height={"100%"} />
-                            </Card>
-                            <Card width={"295px"} height={"75px"}>
-                                <Input {...register("category")} placeholder="Categoria" width={"100%"} height={"100%"} />
-                            </Card>
-                            <Button width={"235px"} height={"75px"} type="submit">Editar Grupo</Button>
-                        </form>
+                            <GroupButton>
+                                <Button width={"250px"} height={"50px"} onClick={handleShowActivities}>Atividades</Button>
+                                <Button width={"250px"} height={"50px"} onClick={handleShowObjects}>Objetivos</Button>
+                            </GroupButton>
+                            <Button width={"250px"} height={"50px"} onClick={() => setShowDescriptionGroup(false)} >Editar Grupo</Button>
+                        </Container>
+                        :
+                        <Container width={"440px"} height={"700px"}>
+                            <ButtonX onClick={() => setShowDescriptionGroup(true)}><FiX /></ButtonX>
+                            <h2>Editar Grupo</h2>
+                            <form onSubmit={handleSubmit(onUpdateGroup)}>
+                                <Card width={"295px"} height={"75px"}>
+                                    <Input {...register("name")} placeholder="Nome" width={"100%"} height={"100%"} />
+                                </Card>
+                                <Card width={"295px"} height={"75px"}>
+                                    <Input {...register("description")} placeholder="Descrição" width={"100%"} height={"100%"} />
+                                </Card>
+                                <Card width={"295px"} height={"75px"}>
+                                    <Input {...register("category")} placeholder="Categoria" width={"100%"} height={"100%"} />
+                                </Card>
+                                <Button width={"235px"} height={"75px"} type="submit">Editar Grupo</Button>
+                            </form>
 
-                    </Container>
+                        </Container>
                 }
-                {showObjects &&
+                {
+                    showObjects &&
                     <>
                         {showListGoals ?
                             <Container width={"440px"} height={"700px"}>
@@ -304,7 +298,7 @@ const ModalGroup = () => {
                                             <Card key={index} >
                                                 <ButtonX onClick={() => {
                                                     setIdGoal(goal.id)
-                                                    onDeleteGoal()
+                                                    deleteGoal(goal.id)
                                                 }}><FiX /></ButtonX>
                                                 <div onClick={() => {
                                                     setIdGoal(goal.id)
@@ -360,8 +354,8 @@ const ModalGroup = () => {
                         }
                     </>
                 }
-            </Content>
-        </Box>
+            </Content >
+        </Box >
     )
 }
 
