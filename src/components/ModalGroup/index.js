@@ -57,7 +57,7 @@ const ModalGroup = () => {
 
     const [showListActivites, setShowListActivites] = useState(true)
     const [showCreateActivite, setShowCreateActivite] = useState(false)
-    const [showEditActivite, setShowEditActivite] = useState(false)
+    const [setShowEditActivite] = useState(false)
 
     const showModalCreateActivite = () => {
         setShowCreateActivite(true)
@@ -79,7 +79,7 @@ const ModalGroup = () => {
 
     const [showListGoals, setShowListGoals] = useState(true)
     const [showCreateGoal, setShowCreateGoal] = useState(false)
-    const [showEditGoal, setShowEditGoal] = useState(false)
+    const [setShowEditGoal] = useState(false)
 
     const showModalCreateGoal = () => {
         setShowCreateGoal(true)
@@ -123,7 +123,6 @@ const ModalGroup = () => {
             updateActivity({ title, realization_time }, idActivite)
         }
     }
-
 
     //Funções para criar, editar e deletar metas
 
