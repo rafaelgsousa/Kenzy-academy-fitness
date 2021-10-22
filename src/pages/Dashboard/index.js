@@ -5,7 +5,7 @@ import { UserContainer, UserInfoContainer, MainContent } from "./styles";
 import UserHeader from "../../components/UserHeader";
 import UserFooter from "../../components/UserFooter";
 import EditUserModal from "../../components/EditUserModal";
-import { useState, useContext, useEffect } from "react/cjs/react.development";
+import { useState, useContext, useEffect } from "react";
 import { UserInfoContext } from "../../providers/UserInfo";
 import habitsImg from "../../assets/img/habitsImage.jpg";
 import groupsImg from "../../assets/img/groupsImage.webp";

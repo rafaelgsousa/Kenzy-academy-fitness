@@ -4,7 +4,7 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { ButtonX } from "./../../components/ButtonX";
 import { FiX } from "react-icons/fi";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 
 function EditUserModal({ setEditUserModal, editUser, setUsername }) {
   const [name, setName] = useState("");

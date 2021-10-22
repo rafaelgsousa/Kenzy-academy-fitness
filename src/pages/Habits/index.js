@@ -8,7 +8,7 @@ import {
   ContainerContent,
 } from "./styles";
 import { Button } from "../../components/Button";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import HabitsModal from "../../components/HabitsModal";
 import EditHabitsModal from "../../components/EditHabitsModal";
 import { useContext } from "react";
