@@ -30,7 +30,7 @@ const Home = () => {
       <HomeCss>
         <header>
           <div className="logo">
-            <img src={logokenzie} alt="logokenzie" />
+            <img src={logokenzie} alt="logokenzie" className="brand" />
             <p>Kenzie Academy</p>
           </div>
 

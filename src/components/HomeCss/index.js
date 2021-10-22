@@ -15,14 +15,14 @@ export const HomeCss = styled.div`
   .images {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    position: fixed;
-    top: 35%;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
-  .images span {
+  /* .images span {
     width: 100px;
     margin: 0 110px 0 130px;
-  }
+  } */
   .images img {
     -webkit-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.66);
     box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.66);
@@ -91,7 +91,7 @@ export const HomeCss = styled.div`
     top: 60px;
   }
 
-  img {
+  .brand {
     position: fixed;
   }
   .logo {
