@@ -39,8 +39,7 @@ export const GoalsProvider = ({ children }) => {
     }
 
     const updateGoal = (data, idGoal) => {
-        console.log("data", data)
-        console.log("idGoal", idGoal)
+
         axios.patch(`https://kenzie-habits.herokuapp.com/goals/${idGoal}/`,
             data,
             {

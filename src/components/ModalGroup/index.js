@@ -134,7 +134,7 @@ const ModalGroup = () => {
 
     const onUpdateGoal = ({ title, difficulty, how_much_achieved, achieved }) => {
         const id = Number(idGoal)
-        console.log("editar", { title, difficulty, how_much_achieved, achieved }, id)
+
         if (title === "" && difficulty === "" && how_much_achieved === "") {
             updateGoal({ achieved }, id)
         }
@@ -165,7 +165,7 @@ const ModalGroup = () => {
 
     const onUpdateGroup = ({ name, description, category }) => {
         const id = idgroup
-        console.log("editar grupos", { name, description, category }, id)
+
         if (description === "" && category === "") {
             updateGroup({ name }, id)
         }
@@ -203,7 +203,7 @@ const ModalGroup = () => {
                                     {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
                                         .map((activite) =>
                                             <Card key={activite.id} >
-                                                {console.log("id no card", activite.id)}
+
                                                 <ButtonX onClick={() => {
                                                     setIdActivite(activite.id)
                                                     deleteActivity(activite.id)

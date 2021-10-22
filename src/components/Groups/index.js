@@ -27,8 +27,6 @@ export const GroupsComponent = () => {
     const { access, subscriptions, groupsOfCategory, getSubscription,
         getGroupsForCategory, deleteGroup, createGroup, subscribToAGroup } = useContext(GroupsContext)
 
-    console.log(groupsOfCategory);
-
     useEffect(() => {
         getSubscription()
         return (() => getSubscription())
@@ -124,7 +122,7 @@ export const GroupsComponent = () => {
                         height={"35px"}
                     />
                     <Content>
-                        {console.log(groupsOfCategory)}
+
                         {(groupsOfCategory.data !== undefined) && groupsOfCategory.data.results.map((groups, index) =>
                             <Card key={index} height={"50px"}>
                                 <TextCard onClick={() => history.push(`/modalgroups/${groups.id}`)}>{groups.name}</TextCard>
