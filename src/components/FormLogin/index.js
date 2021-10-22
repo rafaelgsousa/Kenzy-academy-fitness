@@ -35,10 +35,10 @@ const FormLogin = () => {
       })
       .catch((err) => toast.error("Login Fail"))
   }
+  const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
   const goTodash = () => {
 
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
     if (token) {
 
@@ -72,9 +72,8 @@ const FormLogin = () => {
             <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>
           </div>
           <div className="buttons">
-            <Button>Quem Somos</Button>
-            <Button>Planos</Button>
-            <Button onClick={goTodash}>Dashboard</Button>
+          <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
+              {token && <Button onClick={goTodash}>Dashboard</Button>}
           </div>
         </header>
         <h1 className="h1login">LOGIN</h1>
