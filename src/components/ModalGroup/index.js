@@ -57,7 +57,7 @@ const ModalGroup = () => {
 
     const [showListActivites, setShowListActivites] = useState(true)
     const [showCreateActivite, setShowCreateActivite] = useState(false)
-    const [showEditActivite, setShowEditActivite] = useState(false)
+    const [setShowEditActivite] = useState(false)
 
     const showModalCreateActivite = () => {
         setShowCreateActivite(true)
@@ -79,7 +79,7 @@ const ModalGroup = () => {
 
     const [showListGoals, setShowListGoals] = useState(true)
     const [showCreateGoal, setShowCreateGoal] = useState(false)
-    const [showEditGoal, setShowEditGoal] = useState(false)
+    const [setShowEditGoal] = useState(false)
 
     const showModalCreateGoal = () => {
         setShowCreateGoal(true)
@@ -124,7 +124,6 @@ const ModalGroup = () => {
         }
     }
 
-
     //Funções para criar, editar e deletar metas
 
     const onCreateGoal = (data) => {
@@ -134,7 +133,7 @@ const ModalGroup = () => {
 
     const onUpdateGoal = ({ title, difficulty, how_much_achieved, achieved }) => {
         const id = Number(idGoal)
-        console.log("editar", { title, difficulty, how_much_achieved, achieved }, id)
+
         if (title === "" && difficulty === "" && how_much_achieved === "") {
             updateGoal({ achieved }, id)
         }
@@ -165,7 +164,7 @@ const ModalGroup = () => {
 
     const onUpdateGroup = ({ name, description, category }) => {
         const id = idgroup
-        console.log("editar grupos", { name, description, category }, id)
+
         if (description === "" && category === "") {
             updateGroup({ name }, id)
         }
@@ -203,7 +202,7 @@ const ModalGroup = () => {
                                     {(activitesOfGroup.data !== undefined) && activitesOfGroup.data.results
                                         .map((activite) =>
                                             <Card key={activite.id} >
-                                                {console.log("id no card", activite.id)}
+
                                                 <ButtonX onClick={() => {
                                                     setIdActivite(activite.id)
                                                     deleteActivity(activite.id)

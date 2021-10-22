@@ -92,8 +92,6 @@ export const GroupsProvider = ({ children }) => {
 
     const subscribToAGroup = (idGroup) => {
 
-        console.log(idGroup)
-        
         axios.post(`https://kenzie-habits.herokuapp.com/groups/${idGroup}/subscribe/`,
             {
                 headers: {

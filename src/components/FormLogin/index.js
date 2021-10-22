@@ -21,7 +21,7 @@ const FormLogin = () => {
       username: username,
       password: password
     }
-    console.log("qualquercoisa")
+
     axios.post("https://kenzie-habits.herokuapp.com/sessions/", Login)
       .then((response) => {
         toast.success("Login Success")
@@ -72,8 +72,8 @@ const FormLogin = () => {
             <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>
           </div>
           <div className="buttons">
-          <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
-              {token && <Button onClick={goTodash}>Dashboard</Button>}
+            <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
+            {token && <Button onClick={goTodash}>Dashboard</Button>}
           </div>
         </header>
         <h1 className="h1login">LOGIN</h1>
