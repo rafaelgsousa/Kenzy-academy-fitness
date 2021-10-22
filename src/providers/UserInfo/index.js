@@ -1,6 +1,5 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
 import { toast } from "react-toastify";
 
 export const UserInfoContext = createContext();
