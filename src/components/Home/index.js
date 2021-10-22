@@ -57,8 +57,7 @@ const Home = () => {
             )}
           </div>
           <div className="buttons">
-            <Button>Quem Somos</Button>
-            <Button>Planos</Button>
+            <Button onClick={() => history.push('/quemSomos')}>Quem Somos</Button>
             {token && <Button onClick={goTodash}>Dashboard</Button>}
           </div>
         </header>
