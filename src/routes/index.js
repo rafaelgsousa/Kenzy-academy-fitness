@@ -11,30 +11,14 @@ import QuemSomosPage from "../pages/QuemSomosPage";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route path="/quemSomos">
-          <QuemSomosPage/>
-        </Route>
-      <Route path="/signUp">
-        <Cadastro />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/habits">
-        <Habits />
-      </Route>
-      <Route path="/dashboard">
-        <Dashboard />
-      </Route>
-      <Route path="/groups">
-        <Groups />
-      </Route>
-      <Route path="/modalgroups/:id">
-        <ModalGroups/>
-      </Route>
+      <Route exact path="/" component={HomePage}/>
+      <Route path="/quemSomos" component={QuemSomosPage}/>
+      <Route path="/signUp" component={Cadastro}/>
+      <Route path="/login" component={Login}/>
+      <Route path="/habits" component={Habits}/>
+      <Route path="/dashboard" component={Dashboard}/>
+      <Route path="/groups" component={Groups}/>
+      <Route path="/modalgroups/:id" component={ModalGroups}/>
     </Switch>
   );
 }
