@@ -33,6 +33,7 @@ const FormCadastro = () => {
         axios.post("https://kenzie-habits.herokuapp.com/users/", data)
             .then(() => {
                 toast.success("Usuário registrado")
+                history.push("/login")
             })
             .catch((err) => toast.error("Usuário não registrado"))
     }
@@ -93,7 +94,7 @@ const FormCadastro = () => {
                                     <Input width={"100%"} type = {"password"} placeholder="Password" {...register("password")} />
                                     {errors.password?.message}
                                 </div>
-                                <Button type="submit" className="Register">Cadastrar</Button>
+                                <Button type="submit" className="Register" >Cadastrar</Button>
                             </div>
                             <div className="optional-form">
                                 <h3 className="dados">PREENCHIMENTO NÃO OBRIGATÓRIO</h3>

@@ -53,11 +53,6 @@ const FormLogin = () => {
       toast.error("Faça login para acessar")
     }
   }
-  const logout = () => {
-    localStorage.clear()
-    history.push("/")
-    toast.success("Logout feito com sucesso")
-  }
 
   return (
     <div>
@@ -72,7 +67,6 @@ const FormLogin = () => {
             <div className="training">
               <p>#Training <br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Like a Dev</p>
             </div>
-            <nav onClick={logout} className="signup">Logout</nav>
             <nav onClick={() => history.push("/")} className="signup">Home</nav>
             <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>
           </div>
