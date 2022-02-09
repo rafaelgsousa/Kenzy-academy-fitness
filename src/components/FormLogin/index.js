@@ -6,6 +6,11 @@ import jwt_decode from "jwt-decode"
 import { Button } from "../Button"
 import logokenzie from "../../assets/img/logokenzie.png"
 import { LoginCss } from "../LoginCss"
+import { Input } from '../Input'
+import { useForm } from "react-hook-form";
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup";
+
 
 const FormLogin = () => {
 
@@ -58,7 +63,7 @@ const FormLogin = () => {
     <div>
       <LoginCss>
         <header>
-          <div className="logo">
+          <div className="logo" onClick={()=>history.push("/")}>
             <img src={logokenzie} alt="logokenzie" />
             <p>Kenzie Academy</p>
           </div>
@@ -72,15 +77,15 @@ const FormLogin = () => {
             <nav onClick={() => history.push("/signUp")} className="signup">Sign Up</nav>
           </div>
           <div className="buttons">
-            <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
+            <Button onClick={() => history.push("/quemSomos")}>Quem Somos</Button>
             {token && <Button onClick={goTodash}>Dashboard</Button>}
           </div>
         </header>
-        <h1 className="h1login">LOGIN</h1>
         <div className="container">
           <form onSubmit={(evt) => SubmitLogin(evt)} className="form">
-            <input placeholder="Username" onChange={(evt) => setUsername(evt.target.value)} value={username} />
-            <input placeholder="Password" type="password" onChange={(evt) => setPassword(evt.target.value)} value={password} />
+            <h1 className="h1login">LOGIN</h1>
+            <Input width={"250px"} placeholder="Username" onChange={(evt) => setUsername(evt.target.value)} value={username} />
+            <Input width={"250px"} placeholder="Password" type="password" onChange={(evt) => setPassword(evt.target.value)} value={password} />
             <Button type="submit" className="Login">Login</Button>
           </form>
         </div>

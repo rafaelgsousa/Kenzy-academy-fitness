@@ -27,6 +27,7 @@ export const Card = styled.div`
   margin: ${(props) => props.margin || "12px"};
   cursor: pointer;
   position: ${(props) => props.position || "relative"};
+  font-size: ${props=>props.size || "20px"};
 
   &:hover {
     background: ${(props) => props.backgroundHover || "#ccc"};
@@ -46,6 +47,6 @@ export const Card = styled.div`
  */
 export const TextCard = styled.p`
   margin: 5px;
-  font-size: ${(props) => props.fontSize || "12px"};
+  font-size: ${(props) => props.fontSize || "18px"};
   color: ${(props) => props.color || "black"};
 `;

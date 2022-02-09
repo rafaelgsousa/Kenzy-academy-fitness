@@ -66,3 +66,4 @@ export const Blur = styled.span`
   width: 100%;
   filter: blur(3px);
 `;
+

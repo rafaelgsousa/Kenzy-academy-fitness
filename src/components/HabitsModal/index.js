@@ -41,7 +41,7 @@ function HabitsModal({ setHabitsModal }) {
   return (
     <Blur>
       <HabitsEditModal>
-        <Container width={"50vw"} height={"50vh"} opacity={"1"}>
+        <Container width={"70vw"} height={"70vh"} opacity={"1"}>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <ButtonX onClick={() => setHabitsModal(false)}>
               <FiX />
@@ -77,7 +77,7 @@ function HabitsModal({ setHabitsModal }) {
                 {errors.how_much_achieved?.message}
               </CheckBoxLabel>
             </GroupButton>
-            <Button type="submit">Criar</Button>
+            <Button type="submit" size="25px">Criar</Button>
           </form>
         </Container>
       </HabitsEditModal>

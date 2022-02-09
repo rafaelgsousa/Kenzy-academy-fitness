@@ -6,7 +6,7 @@ const Login = () => {
     const history = useHistory()
 
     const token = localStorage.getItem("@KAF_userToken");
-            if (token) {
+    if (token) {
         history.push("/dashboard");
     }
     

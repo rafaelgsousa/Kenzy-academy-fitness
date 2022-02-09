@@ -8,4 +8,9 @@ export const Button = styled.button`
     text-align: center;
     font-size: ${ props => props.size || "15px" };
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
 `;

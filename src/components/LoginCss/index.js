@@ -54,6 +54,7 @@ export const LoginCss = styled.div`
         justify-content: center;
         -webkit-box-shadow: 0px 3px 15px -5px rgba(0,0,0,0.66); 
         box-shadow: 0px 3px 15px -5px rgba(0,0,0,0.66);
+        cursor: pointer;
     }
     .logo p{
         position: fixed;
@@ -99,10 +100,11 @@ export const LoginCss = styled.div`
         display: flex;
         justify-content: center;
         flex-direction: column;
-        position: absolute;
+        /* position: absolute;
         top:45%;
-        right:43%;
+        right:43%; */
         align-items: center;
+        height: 100%;
     }
     .form input{
         margin: 10px 0 0 0;
@@ -110,14 +112,12 @@ export const LoginCss = styled.div`
     .Login{
         background-color: white;
         color: black;
+        cursor: pointer;
     }
     .h1login{
-        position: absolute;
+        /* position: absolute;
         top:30%;
-        right:45.5%;
+        right:45.5%; */
         color: white;
     }
-
-
-
 `

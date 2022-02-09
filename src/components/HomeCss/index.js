@@ -103,6 +103,7 @@ export const HomeCss = styled.div`
     justify-content: center;
     -webkit-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.66);
     box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.66);
+    cursor: pointer;
   }
   .logo p {
     position: fixed;

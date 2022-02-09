@@ -37,17 +37,15 @@ const ModalGroup = () => {
         // eslint-disable-next-line
         , [])
 
-    useEffect(() => {
+    useEffect(() => 
         getGroupActivities(idgroup)
-        return (() => getGroupActivities(idgroup))
         // eslint-disable-next-line
-    }, [activitesOfGroup])
+    , [activitesOfGroup])
 
-    useEffect(() => {
+    useEffect(() => 
         getGroupGoals(idgroup)
-        return (() => getGroupGoals(idgroup))
         // eslint-disable-next-line
-    }, [goalsGroup])
+    , [goalsGroup])
 
     const [showActivities, setShowActivities] = useState(false)
     const [showObjects, setShowObjects] = useState(false)
@@ -108,8 +106,7 @@ const ModalGroup = () => {
     const onCreateActives = ({ title, time }) => {
         const realization_time = `${time.split("-").reverse().join("-")}T00:00:00Z`;
         const group = Number(idgroup)
-        createActivites({ title, realization_time, group })
-        showModalListActivites()
+        return createActivites({ title, realization_time, group })
     }
 
     const onEditActivite = ({ title, time }) => {
@@ -130,6 +127,7 @@ const ModalGroup = () => {
 
     const onCreateGoal = (data) => {
         const group = Number(idgroup)
+        console.log({ ...data, group })
         createGoal({ ...data, group })
     }
 
@@ -230,7 +228,7 @@ const ModalGroup = () => {
                                             <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
                                         </Card>
                                         <Card width={"295px"} height={"75px"}>
-                                            <Input {...register("time")} placeholder="dia-mês-ano" width={"100%"} height={"100%"} />
+                                            <Input {...register("time")} placeholder="dd-mm-aaaa" width={"100%"} height={"100%"} />
                                         </Card>
                                         <Button width={"235px"} height={"75px"} type="submit">Criar</Button>
                                     </form>
@@ -244,7 +242,7 @@ const ModalGroup = () => {
                                             <Input {...register("title")} placeholder="Descrição" width={"100%"} height={"100%"} />
                                         </Card>
                                         <Card width={"295px"} height={"75px"}>
-                                            <Input {...register("time")} placeholder="dia-mês-ano" width={"100%"} height={"100%"} />
+                                            <Input {...register("time")} placeholder="dd-mm-aaaa" width={"100%"} height={"100%"} />
                                         </Card>
                                         <Button width={"235px"} height={"75px"} type="submit">Editar</Button>
                                     </form>
@@ -299,11 +297,11 @@ const ModalGroup = () => {
                                             <Card key={index} >
                                                 <ButtonX onClick={() => {
                                                     setIdGoal(goal.id)
-                                                    deleteGoal(goal.id)
+                                                    return deleteGoal(goal.id)
                                                 }}><FiX /></ButtonX>
                                                 <div onClick={() => {
                                                     setIdGoal(goal.id)
-                                                    showModalEditGoal()
+                                                    return showModalEditGoal()
                                                 }}>
                                                     <TextCard>{goal.title}</TextCard>
                                                     <TextCard>{goal.difficulty}</TextCard>

@@ -47,7 +47,6 @@ export const HabitsListContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    width: 20%;
     height: 45%;
     > p {
       margin: 0;

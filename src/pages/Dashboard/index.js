@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 import Container from "../../components/Container";
-import { Button } from "../../components/Button";
+// import { Button } from "../../components/Button";
 import { UserContainer, UserInfoContainer, MainContent } from "./styles";
 import UserHeader from "../../components/UserHeader";
 import UserFooter from "../../components/UserFooter";
@@ -40,28 +40,36 @@ function Dashboard() {
       <UserContainer>
         <UserInfoContainer>
           <Container
-            width={"300px"}
-            height={"300px"}
+            width={"400px"}
+            height={"400px"}
             onClick={() => history.push("/habits")}
             img={habitsImg}
           >
-            <h2>Hábitos</h2>
+            <h2 style={{backgroundColor:"white",padding:"10px",color:"black",fontSize:"30px"}}>Hábitos</h2>
           </Container>
         </UserInfoContainer>
 
-        <Container img={profileImg}>
-          <h2>{name}</h2>
-          <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button>
+        <Container 
+        img={profileImg} 
+        width={"400px"}
+        height={"400px"}>
+          {/* <h2 style={{backgroundColor:"white",padding:"10px",color:"black",fontSize:"30px"}}>{name}</h2> */}
+          <h2 onClick={() => setEditUserModal(true)} 
+          style={{backgroundColor:"white",
+          padding:"10px",color:"black",
+          fontSize:"30px",
+          cursor:"pointer"}}>Editar Perfil</h2>
+          {/* <Button onClick={() => setEditUserModal(true)}>Editar Perfil</Button> */}
         </Container>
 
         <UserInfoContainer>
           <Container
-            width={"300px"}
-            height={"300px"}
+            width={"400px"}
+            height={"400px"}
             onClick={() => history.push("/groups")}
             img={groupsImg}
           >
-            <h2>Grupos</h2>
+            <h2 style={{backgroundColor:"white",padding:"10px",color:"black",fontSize:"30px"}}>Grupos</h2>
           </Container>
         </UserInfoContainer>
       </UserContainer>

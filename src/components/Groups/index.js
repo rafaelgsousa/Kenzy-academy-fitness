@@ -24,7 +24,6 @@ export const GroupsComponent = () => {
   const [category, setCategory] = useState("");
 
   const {
-    access,
     subscriptions,
     groupsOfCategory,
     getSubscription,
@@ -40,6 +39,12 @@ export const GroupsComponent = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    getSubscription();
+    return () => getSubscription();
+    // eslint-disable-next-line
+  }, [subscriptions]);
+
   const loadGroupsForCategory = () => {
     getGroupsForCategory(`?category=${category}&page=${numberPage}`);
   };
@@ -50,7 +55,7 @@ export const GroupsComponent = () => {
       getGroupsForCategory([]);
     };
     // eslint-disable-next-line
-  }, []);
+  }, [category]);
 
   const onCreateCategory = (data) => {
     createGroup(data);
@@ -130,7 +135,7 @@ export const GroupsComponent = () => {
                     <ButtonX
                       onClick={(e) => {
                         e.stopPropagation();
-                        deleteGroup(group.id, access);
+                        deleteGroup(group.id);
                       }}
                     >
                       <FiX />
@@ -186,7 +191,7 @@ export const GroupsComponent = () => {
             )}
             <span style={{ margin: "1rem" }}>{numberPage}</span>
             {groupsOfCategory.data !== undefined &&
-            numberPage < Math.ceil(groupsOfCategory.data.count / 15) ? (
+              numberPage < Math.ceil(groupsOfCategory.data.count / 15) ? (
               <Button onClick={handleAddPagination}>Next</Button>
             ) : (
               <Button disabled>Previous</Button>

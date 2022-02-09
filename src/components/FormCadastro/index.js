@@ -1,4 +1,4 @@
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { CadastroCss } from "../CadastroCss"
 import logokenzie from "../../assets/img/logokenzie.png"
 import { Button } from "../Button"
+import { Input } from './../Input'
 
 const FormCadastro = () => {
 
@@ -28,7 +29,7 @@ const FormCadastro = () => {
         })
 
     const onSubmit = (data) => {
-
+        
         axios.post("https://kenzie-habits.herokuapp.com/users/", data)
             .then(() => {
                 toast.success("Usuário registrado")
@@ -53,12 +54,13 @@ const FormCadastro = () => {
         history.push("/")
         toast.success("Logout feito com sucesso")
     }
+
     return (
         <div>
             <CadastroCss>
                 <header>
-                    <div className="logo">
-                        <img src={logokenzie} alt="logokenzie" />
+                    <div className="logo" onClick={()=>history.push("/")}>
+                        <img src={logokenzie} alt="logokenzie" className="brand" />
                         <p>Kenzie Academy</p>
                     </div>
 
@@ -67,54 +69,57 @@ const FormCadastro = () => {
                             <p>#Training <br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Like a Dev</p>
                         </div>
                         <nav onClick={() => history.push("/")} className="signup">Home</nav>
-                        <nav onClick={logout} className="signup">Logout</nav>
-                        <nav onClick={() => history.push("/login")} className="login">Login</nav>
+                        {token && <nav onClick={logout} className="signup">Logout</nav>}
+                        {!token && <nav onClick={() => history.push("/login")} className="login">Login</nav>}
                     </div>
                     <div className="buttons">
-                    <Button onClick={() => history.push("quemSomos")}>Quem Somos</Button>
-                    {token && <Button onClick={goTodash}>Dashboard</Button>}
+                        <Button onClick={() => history.push("/quemSomos")}>Quem Somos</Button>
+                        {token && <Button onClick={goTodash}>Dashboard</Button>}
                     </div>
                 </header>
                 <div className="container">
-                    <div className="dados">
-                        <h2>MATRÍCULA</h2>
-                        <h5>DADOS PESSOAIS</h5>
-                        <p>Agora é só preencher rapidinho alguns dados :)</p>
-                        <h3 className="preenchimento">PREENCHIMENTO NÃO OBRIGATÓRIO</h3>
-                    </div>
-                    <div className="form">
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="Mvp">
-                                <input placeholder="Username" {...register("username")} />
-                                {errors.username?.message}
-                                <input placeholder="E-mail" {...register("email")} />
-                                {errors.email?.message}
-                                <input placeholder="Password" {...register("password")} />
-                                {errors.password?.message}
+                    <div className="content">
+                        <form onSubmit={handleSubmit(onSubmit)} className="form">
+                            <div className="mandatory-form">
+                                <div className="dados">
+                                    <h2>MATRÍCULA</h2>
+                                    <h5>DADOS PESSOAIS</h5>
+                                </div>
+                                <div className="Mvp">
+                                    <Input width={"100%"} placeholder="Username" {...register("username")} />
+                                    {errors.username?.message}
+                                    <Input width={"100%"} placeholder="E-mail" {...register("email")} />
+                                    {errors.email?.message}
+                                    <Input width={"100%"} type = {"password"} placeholder="Password" {...register("password")} />
+                                    {errors.password?.message}
+                                </div>
+                                <Button type="submit" className="Register">Cadastrar</Button>
                             </div>
-                            <div className="nonMvp1">
-
-                                <input placeholder="Nome Completo" type="text" />
-                                <input placeholder="Data de Nascimento" type="date" />
-                                <input placeholder="Telefone" type="number" />
-                                <div className="genero">
-                                    <input type="radio" name="opcao" value="Masculino" /> Masculino
-                                    <input type="radio" name="opcao" value="Feminino" /> Feminino
+                            <div className="optional-form">
+                                <h3 className="dados">PREENCHIMENTO NÃO OBRIGATÓRIO</h3>
+                                <div className="nonMvp1">
+                                    <Input width={"100%"} placeholder="Nome Completo" type="text" />
+                                    <Input width={"100%"} placeholder="Data de Nascimento" type="date" />
+                                    <Input width={"100%"} placeholder="Telefone" type="number" />
+                                    <div className="genero">
+                                        <div>
+                                            <Input width={"20px"} type="radio" name="opcao" value="Masculino" />
+                                            <label>Masculino</label>
+                                        </div>
+                                        <div>
+                                            <Input width={"20px"} type="radio" name="opcao" value="Feminino" />
+                                            <label>Feminino</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="nonMvp2">
+                                    <Input width={"100%"} placeholder="Endereço" />
+                                    <Input width={"100%"} placeholder="Bairro" type="text" />
+                                    <Input width={"100%"} placeholder="Cidade" type="text" />
                                 </div>
                             </div>
-                            <div className="nonMvp2">
-                                <input placeholder="Cep" type="number" />
-                                <input placeholder="Endereço" />
-                                <input placeholder="Bairro" type="text" />
-                                <input placeholder="Cidade" type="text" />
-                                <input placeholder="Número" type="number" />
-                                <input placeholder="Complemento" />
-                            </div>
-                            <Button type="submit" className="Register">Cadastrar</Button>
                         </form>
                     </div>
-                    <Button onClick={() => history.push("/login")} className="Login">Login</Button>
-
                 </div>
                 <footer>
                     <div className="infoFooter">

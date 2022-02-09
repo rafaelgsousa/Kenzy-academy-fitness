@@ -55,6 +55,7 @@ function EditHabitsModal({ setEditHabitsModal, habitId }) {
               onSubmitFunction();
             }}
           >
+            <h2>Editar Habito</h2>
             <Input
               placeholder="Título"
               value={title}

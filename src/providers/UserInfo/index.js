@@ -7,10 +7,12 @@ export const UserInfoContext = createContext();
 export const UserInfoProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
 
-  const editUser = (user) => {
-    const id = JSON.parse(localStorage.getItem("@KAF_userId"));
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+  const id = JSON.parse(localStorage.getItem("@KAF_userId"));
+  const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
 
+
+  const editUser = (user) => {
+    
     axios
       .patch(`https://kenzie-habits.herokuapp.com/users/${id}/`, user, {
         headers: {
@@ -27,7 +29,7 @@ export const UserInfoProvider = ({ children }) => {
   };
 
   const getHabitsList = () => {
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
         headers: {
@@ -38,9 +40,10 @@ export const UserInfoProvider = ({ children }) => {
   };
 
   const createHabit = (habit) => {
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+
     axios
-      .post("https://kenzie-habits.herokuapp.com/habits/", habit, {
+      .post("https://kenzie-habits.herokuapp.com/habits/", habit, 
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +54,7 @@ export const UserInfoProvider = ({ children }) => {
   };
 
   const deleteHabit = (id) => {
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+
     axios
       .delete(`https://kenzie-habits.herokuapp.com/habits/${id}/`, {
         headers: {
@@ -62,7 +65,7 @@ export const UserInfoProvider = ({ children }) => {
   };
 
   const editHabit = (id, habit) => {
-    const token = JSON.parse(localStorage.getItem("@KAF_userToken"));
+
     axios
       .patch(`https://kenzie-habits.herokuapp.com/habits/${id}/`, habit, {
         headers: {
@@ -73,7 +76,6 @@ export const UserInfoProvider = ({ children }) => {
   };
 
   const getUser = (setName) => {
-    const id = JSON.parse(localStorage.getItem("@KAF_userId"));
 
     axios
       .get(`https://kenzie-habits.herokuapp.com/users/${id}/`)
